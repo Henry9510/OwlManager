@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+    <title>Owl Manager Dashboard</title>
+</head>
+
+<body>
+<header>
+    <nav class="header">
+        <div class="div-logo">
+            <img src="/img/buho.png" class="logoImg" alt="Logo de Owl Manager" style="width: 50px">
+            <a class="logotexto" href="/templates/index">Owl Manager Dashboard</a>
+        </div>
+
+        <ul class="nav-list">
+            <li><a href="/templates/index" aria-label="Ir a inicio">Inicio</a></li>
+
+            <li>
+                <a aria-label="Gestión Usuarios">Gestión Usuarios</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-empleado" aria-label="Agregar nuevo empleado">Nuevo</a></li>
+                    <li><a href="/templates/lista-empleado" aria-label="Lista de empleados">Listado</a></li>
+                    <li><a href="/templates/registro-horas" aria-label="Registro de horas">Registro de Tiempo</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear producto</a></li>
+                    <li><a href="/templates/lista-insumo" aria-label="Ver almacén">Almacén</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/gestionProyectos" aria-label="Gestión de Proyectos">Gestión de Proyectos</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-proyecto" aria-label="Agregar nuevo proyecto">Nuevo</a></li>
+                    <li><a href="/templates/recibirPedidos" aria-label="Recibir pedidos">Recibir Pedidos</a></li>
+                    <li><a href="/templates/lista-proyectos" aria-label="Lista de proyectos">Lista Proyecto</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/transferencias" aria-label="Gestión de Transferencias">Gestión de Transferencias</a>
+                <ul class="submenu">
+                    <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a almacén</a></li>
+                    <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a proyecto</a></li>
+                    <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de Transferencia</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/reportes" aria-label="Reportes">Reportes</a>
+                <ul class="submenu">
+                    <li><a href="#" aria-label="Ver avance en proyecto"><i class="fas fa-project-diagram"></i> Avance en proyecto</a></li>
+                    <li><a href="#" aria-label="Ver inventario de proyecto"><i class="fas fa-box"></i> Inventario de proyecto</a></li>
+                    <li><a href="#" aria-label="Ver insumos faltantes"><i class="fas fa-exclamation-triangle"></i> Insumos Faltantes</a></li>
+                </ul>
+            </li>
+            <li><a href="/templates/login" aria-label="Cerrar sesión">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="main-index">
+    <section class="cont-main">
+        <section class="cards">
+            <div class="card" style="background: #A3C1DA">
+                <i class="fas fa-calendar"></i>
+                <div class="info">
+                    <h3>Tarjeta Proyectos del Mes</h3>
+                    <span class="number" id="totalProyectoMes">0</span>
+                </div>
+            </div>
+            <div class="card" style="background: #bdecb6">
+                <i class="fas fa-calendar-check"></i>
+                <div class="info">
+                    <h3>Tarjeta proyecto terminado mes</h3>
+                    <span class="number">45</span>
+                </div>
+            </div>
+            <div class="card" style="background: #F9E5A8">
+                <i class="fas fa-list-alt"></i>
+                <div class="info">
+                    <h3>Tarjeta total de solicitudes</h3>
+                    <span class="number">78</span>
+                </div>
+            </div>
+            <div class="card" style="background: #F4C2C2">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div class="info">
+                    <h3>Tarjeta total de faltantes</h3>
+                    <span class="number">12</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="tables">
+            <div class="tablas-mes">
+                <div class="table-container-1">
+                    <h2>Proyectos del Mes</h2>
+                    <table id="tablaProyectoMes">
+                        <thead>
+                        <tr>
+                            <th>Número de Proyecto</th>
+                            <th>Descripción</th>
+                            <th>Horas Estimadas</th>
+                            <th>Horas Reales</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-container-2">
+                    <h2>Proyectos Terminados del Mes</h2>
+                    <table id="tablaProyectoMesTerminados">
+                        <thead>
+                        <tr>
+                            <th>Fecha Finalización</th>
+                            <th>Proyecto</th>
+                            <th>Horas Estimadas</th>
+                            <th>Horas Reales</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tablas-indicadores">
+                <div class="table-container-3">
+                    <h2>Horas por Proyecto</h2>
+                    <table id="tablaHorasHombre">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Número de Proyecto</th>
+                            <th>Descripción</th>
+                            <th>Horas Estimadas</th>
+                            <th>Horas Reales</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-container-4">
+                    <h2>Consumo y Faltantes por Proyecto</h2>
+                    <table id="consumoFaltantes">
+                        <thead>
+                        <tr>
+                            <th>Numero proyecto</th>
+                            <th>faltantes</th>
+                            <th>totales</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </section>
+</main>
+
+<script src="/js/infoIndex.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="/css/form.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+    <title>Owl Manager Dashboard</title>
+</head>
+<script src="/js/CRUDProyecto.js"></script>
+<body>
+<header>
+    <nav class="header">
+        <div class="div-logo">
+            <img src="/img/buho.png" class="logoImg" alt="Logo de Owl Manager" style="width: 50px">
+            <a class="logotexto" href="/index">Owl Manager Dashboard</a>
+        </div>
+
+        <ul class="nav-list">
+            <li><a href="/index" aria-label="Ir a inicio">Inicio</a></li>
+
+            <li>
+                <a aria-label="Gestión Usuarios">Gestión Usuarios</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-empleado" aria-label="Agregar nuevo empleado">Nuevo</a></li>
+                    <li><a href="/templates/lista-empleado" aria-label="Lista de empleados">Listado</a></li>
+                    <li><a href="/templates/registro-horas" aria-label="Registro de horas">Registro de Tiempo</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear producto</a></li>
+                    <li><a href="/templates/lista-insumo" aria-label="Ver almacén">Almacén</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/gestionProyectos" aria-label="Gestión de Proyectos">Gestión de Proyectos</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-proyecto" aria-label="Agregar nuevo proyecto">Nuevo</a></li>
+                    <li><a href="/templates/recibirPedidos" aria-label="Recibir pedidos">Recibir Pedidos</a></li>
+                    <li><a href="/templates/lista-proyectos" aria-label="Lista de proyectos">Lista Proyecto</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/transferencias" aria-label="Gestión de Transferencias">Gestión de Transferencias</a>
+                <ul class="submenu">
+                    <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a almacén</a></li>
+                    <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a proyecto</a></li>
+                    <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de Transferencia</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/reportes" aria-label="Reportes">Reportes</a>
+                <ul class="submenu">
+                    <li><a href="#" aria-label="Ver avance en proyecto"><i class="fas fa-project-diagram"></i> Avance en proyecto</a></li>
+                    <li><a href="#" aria-label="Ver inventario de proyecto"><i class="fas fa-box"></i> Inventario de proyecto</a></li>
+                    <li><a href="#" aria-label="Ver insumos faltantes"><i class="fas fa-exclamation-triangle"></i> Insumos Faltantes</a></li>
+                </ul>
+            </li>
+            <li><a href="/templates/login" aria-label="Cerrar sesión">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="main-index">
+    <section style=" width: 100%; display: flex; flex-direction: column;">
+
+        <h2>Gestión de Materia Prima</h2>
+
+        <h3>Inventario</h3>
+
+
+        <h1>Listado de usuarios</h1>
+
+
+        <table id="tablaProyectos">
+            <thead>
+            <tr>
+                <th colspan="9">Productos</th>
+            </tr>
+            <tr>
+                <th>ID</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Numero de Proyecto</th>
+                <th>Descripción</th>
+                <th>Horas Estimadas</th>
+                <th>Horas Reales</th>
+
+                <th colspan="2">Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Las filas de datos se agregarán aquí dinámicamente -->
+            </tbody>
+        </table>
+        <section class="form-section">
+            <div class="div-edit">
+                <div style="background-color: antiquewhite;">
+                    <h2>Gestión de Proyectos</h2>
+                </div>
+                <h1>Editar Proyecto</h1>
+                <form class="form-proyecto" id="formEditarProyecto">
+                    <div class="sect-div1">
+                        <div class="form-group">
+                            <label for="numeroProyecto">Número de Proyecto:</label>
+                            <input type="number" id="numeroProyecto" name="numeroProyecto" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcionProyecto">Descripción:</label>
+                            <input type="text" id="descripcionProyecto" name="descripcionProyecto" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fechaInicio">Fecha de Inicio:</label>
+                            <input type="date" id="fechaInicio" name="fechaInicio" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fechaFin">Fecha de Fin:</label>
+                            <input type="date" id="fechaFin" name="fechaFin" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="horasEstimadas">Horas Estimadas:</label>
+                            <input type="number" id="horasEstimadas" name="horasEstimadas" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="horasReales">Horas Reales:</label>
+                            <input type="number" id="horasReales" name="horasReales" min="0" required>
+                        </div>
+                    </div>
+                    <div class="btnModificar">
+                        <button id="btnModificarProyecto" type="submit">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </section>
+
+
+
+    <script src="https://use.fontawesome.com/bf66789927.js"></script>
+    <script src="/js/CRUDProyecto.js"></script>
+
+    </body>
+</html>

@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.RestController;
         }
 
         @PostMapping("/api/proyecto")
-        @CrossOrigin(origins = "http://127.0.0.1:5500")
+        @CrossOrigin(origins = "*")
         public ResponseEntity<Proyecto> guardarProyecto(@RequestBody Proyecto proyecto) {
             Proyecto savedProyecto = repositorio.save(proyecto);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedProyecto);

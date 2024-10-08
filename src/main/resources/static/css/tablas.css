@@ -1,0 +1,77 @@
+
+.div-edit{
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    width: 20%;
+    background-color: #0056b3;
+}
+
+a {
+    text-decoration: none;
+}
+/* Estilo para la tabla */
+#tablaProductos {
+    width: 100%;
+    border-collapse: collapse; /* Hace que los bordes de las celdas se fusionen */
+    margin: 20px 0; /* Espacio arriba y abajo de la tabla */
+    font-family: Arial, sans-serif; /* Fuente de la tabla */
+}
+
+/* Estilo para los encabezados */
+#tablaProductos thead {
+    background-color: #f4f4f4; /* Color de fondo para los encabezados */
+    color: #333; /* Color del texto */
+}
+
+#tablaProductos th {
+    padding: 10px; /* Espacio interno en las celdas de los encabezados */
+    text-align: left; /* Alineación del texto a la izquierda */
+    border-bottom: 2px solid #ddd; /* Línea inferior en los encabezados */
+}
+
+/* Estilo para las celdas de la tabla */
+#tablaProductos td {
+    padding: 10px; /* Espacio interno en las celdas */
+    border-bottom: 1px solid #ddd; /* Línea inferior en las celdas */
+}
+
+/* Estilo para las filas alternas */
+#tablaProductos tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Color de fondo para filas pares */
+}
+
+/* Estilo para las filas al pasar el ratón */
+#tablaProductos tbody tr:hover {
+    background-color: #f1f1f1; /* Color de fondo al pasar el ratón */
+}
+
+/* Estilo para los botones de acción */
+.btn-editar,
+.btn-eliminar {
+    background-color: #007bff; /* Color de fondo para los botones */
+    color: #fff; /* Color del texto en los botones */
+    border: none; /* Sin bordes */
+    padding: 5px 10px; /* Espacio interno en los botones */
+    border-radius: 3px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    font-size: 10px; /* Tamaño de fuente en los botones */
+    margin: 0 5px; /* Espacio entre los botones */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+
+/* Estilo para los botones de eliminar */
+ .btn-eliminar {
+    background-color: #dc3545; /* Color de fondo para el botón de eliminar */
+}
+
+/* Estilo para los botones al pasar el ratón */
+ .btn-editar:hover,
+.btn-eliminar:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el ratón para el botón de editar */
+}
+
+/* Estilo específico para el botón de eliminar al pasar el ratón */
+ .btn-eliminar:hover {
+    background-color: #c82333; /* Color de fondo al pasar el ratón para el botón de eliminar */
+}

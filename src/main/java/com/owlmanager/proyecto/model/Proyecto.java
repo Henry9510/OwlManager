@@ -18,7 +18,7 @@ public class Proyecto {
     private Long codigo_proyecto;
 
     private String descripcion_proyecto;
-    private LocalDate fechaInicio;
+    private LocalDate fecha_inicio;
     private LocalDate fecha_fin;
     private  int horas_estimadas;
     private int horas_reales;
@@ -27,7 +27,7 @@ public class Proyecto {
     public String toString() {
         return "Proyecto{" +
                 "descripcion_proyecto='" + descripcion_proyecto + '\'' +
-                ", fechaInicio=" + fechaInicio +
+                ", fechaInicio=" + fecha_inicio +
                 ", fecha_fin=" + fecha_fin +
                 ", horas_estimadas=" + horas_estimadas +
                 ", horas_reales=" + horas_reales +

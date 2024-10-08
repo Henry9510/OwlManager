@@ -29,7 +29,7 @@ public class EmpleadoController {
 
 
 
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @CrossOrigin(origins = "*")
     @GetMapping("/api/empleado/{id}")
     public ResponseEntity<Empleado> obtenerEmpleado(@PathVariable Long id) {
         Optional<Empleado> opt = repositorio.findById(id);
@@ -43,6 +43,7 @@ public class EmpleadoController {
 
 
     }
+
 
 
     @PutMapping("/api/empleado/{id}")
@@ -72,6 +73,7 @@ public class EmpleadoController {
         existingEmpleado.setEmail(empleadoActualizado.getEmail());
         existingEmpleado.setCelular(empleadoActualizado.getCelular());
         existingEmpleado.setFecha_ingreso(empleadoActualizado.getFecha_ingreso());
+        existingEmpleado.setCargo(empleadoActualizado.getCargo());
 
         // Guardar los cambios en la base de datos
         Empleado updatedEmpleado = repositorio.save(existingEmpleado);

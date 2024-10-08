@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="/css/login.css" rel="stylesheet">
+ <link rel="icon" href="/img/favicon-32x32.png"> <title>SB Admin 2 - Login</title>
+</head>
+
+<body class="loginBody">
+
+<div class="login-container">
+
+        <div class="text-center">
+         <h1>!Bienvenido!</h1>
+        </div>
+
+        <form method="post" th:action="@{/auth/login}" th:object="${loginRequest}">
+         <div class="form-group">
+          <input type="email" class="form-control-user"
+                 id="txtEmail" aria-describedby="emailHelp"
+                 placeholder="Ingresa tu Email">
+         </div>
+         <div class="form-group">
+          <input type="password" class="form-control-user"
+                 id="txtPassword" placeholder="Password">
+         </div>
+        </form>
+        <button type="button" onclick="iniciarSesion()" class="btnSesion">
+         Iniciar Sesión
+        </button>
+        <hr>
+        <div class="text-center">
+         <a class="register" href="register.html">Crear Cuenta</a>
+        </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Incluye jQuery aquí -->
+<script src="/js/login.js"></script>
+
+</body>
+
+</html>

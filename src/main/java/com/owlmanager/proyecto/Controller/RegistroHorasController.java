@@ -1,12 +1,10 @@
 package com.owlmanager.proyecto.Controller;
 
 
-import com.owlmanager.proyecto.Dtos.dtosHoras;
 import com.owlmanager.proyecto.Repository.EmpleadoRepository;
 import com.owlmanager.proyecto.Repository.ProyectoRepository;
 import com.owlmanager.proyecto.Repository.RegistroHorasRepository;
 import com.owlmanager.proyecto.model.Empleado;
-import com.owlmanager.proyecto.model.Insumos;
 import com.owlmanager.proyecto.model.Proyecto;
 import com.owlmanager.proyecto.model.RegistroHoras;
 import org.springframework.http.HttpStatus;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/registro-horas")

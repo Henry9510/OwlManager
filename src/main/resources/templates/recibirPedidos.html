@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style-index.css"> <!-- Tu archivo CSS personalizado -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="/img/favicon-32x32.png">
+</head>
+
+<body>
+<header>
+    <nav class="header">
+        <div class="div-logo">
+            <img src="/img/buho.png" class="logoImg" alt="50px"> <a href="/auth/index"> Owl Manager Dashboard </a>
+        </div>
+
+        <ul class="nav-list">
+            <li>
+                <i class="fas fa-cogs toggle-btn"></i>
+                <ul class="config">
+                    <li><a href="#">Subelemento 1</a></li>
+                    <li><a href="#">Subelemento 2</a></li>
+                </ul>
+            </li>
+            <li>
+                <i class="fas fa-bell toggle-btn"></i>
+                <ul class="alert">
+                    <li><a href="#">Subelemento 1</a></li>
+                    <li><a href="#">Subelemento 2</a></li>
+                </ul>
+            </li>
+            <li>
+                <i class="fas fa-user toggle-btn">Nombre Usuario</i>
+                <ul class="login">
+                    <li><a href="#">Subelemento 1</a></li>
+                    <li><a href="#">Subelemento 2</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main class="main-index">
+    <!-- Barra de navegación lateral -->
+    <aside class="nav-lateral">
+        <nav>
+            <ul>
+                <li><a href="/auth/index"><i class="fas fa-home"></i> Inicio</a></li>
+                <li>
+                    <i class="fas fa-users"></i> Usuarios
+                    <ul>
+                        <li><a href="/auth/nuevo-empleado"><i class="fas fa-user-plus"></i> Registrar</a></li>
+                        <li><a href="/auth/lista-empleado"><i class="fas fa-list"></i> Lista Empleados</a></li>
+                        <li><a href="/auth/registro-horas"><i class="fas fa-clock"></i> Registro de horas</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fas fa-box"></i> Inventario
+                    <ul>
+                        <li><a href="/auth/nuevo-producto"><i class="fas fa-box-open"></i> Crear producto</a></li>
+                        <li><a href="/auth/lista-insumo"><i class="fas fa-cogs"></i> Almacén</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fas fa-tachometer-alt"></i> Proyectos
+                    <ul>
+                        <li><a href="/auth/nuevo-proyecto"><i class="fas fa-plus-circle"></i> Nuevo</a></li>
+                        <li><a href="/auth/recibirPedidos"><i class="fas fa-receipt"></i> Recibir Pedidos</a></li>
+                        <li><a href="/auth/lista-proyectos"><i class="fas fa-list"></i> Lista Proyecto</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fas fa-box"></i> Transferencias
+                    <ul>
+                        <li><a href="/auth/transferir-almacen"><i class="fas fa-warehouse"></i> Transferir a almacén</a></li>
+                        <li><a href="/auth/transferir-proyecto"><i class="fas fa-project-diagram"></i> Transferir a proyecto</a></li>
+                        <li><a href="/auth/lista-transferencia"><i class="fas fa-list"></i> Lista de Transferencia</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fas fa-chart-line"></i> Reportes
+                    <ul>
+                        <li><a href="#"><i class="fas fa-project-diagram"></i> Avance en proyecto</a></li>
+                        <li><a href="#"><i class="fas fa-box"></i> Inventario de proyecto</a></li>
+                        <li><a href="#"><i class="fas fa-exclamation-triangle"></i> Insumos Faltantes</a></li>
+                        <li><a href="/auth/login"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+    </aside>
+    <h2>Gestión de Proyectos</h2>
+    <div class="card">
+        <h3>Insumos tranferidos</h3>
+        <!-- Tabla de insumos -->
+        <table>
+            <tr>
+                <th>Proyecto</th>
+                <th>idTranferencia</th>
+                <th>Fecha</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Proyecto A</td>
+                <td>1</td>
+                <td>10-5-1966</td>
+                <td> <a href=" "> abrir </a> </td>
+            </tr>
+            <tr>
+                <td>Proyecto B</td>
+                <td>2</td>
+                <td>10-5-1966</td>
+                <td> <a href=" "> abrir </a> </td>
+            </tr>
+            <tr>
+                <td>Proyecto C</td>
+                <td>3</td>
+                <td>10-5-1966</td>
+                <td> <a href=" "> abrir </a> </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

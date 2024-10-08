@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style-index.css"> <!-- Tu archivo CSS personalizado -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="icon" href="/img/favicon-32x32.png">
+</head>
+
+<body>
+<header>
+    <nav class="nav-cabecera">
+
+        <div class="div-logo">
+            <a href="/auth/index"> <i class="fab fa-android"></i></a>
+        </div>
+
+        <div class="nombreUsuario">
+            <p>Hola bienvenido...</p>
+        </div>
+
+
+        <ul class="nav-list">
+            <li>
+                <i class="fas fa-cogs toggle-btn"></i>
+                <ul class="config">
+                    <li><a href="#">Subelemento 1</a></li>
+                    <li><a href="#">Subelemento 2</a></li>
+                </ul>
+            </li>
+            <li>
+                <i class="fas fa-bell toggle-btn"></i>
+                <ul class="alert">
+                    <li><a href="#">Subelemento 1</a></li>
+                    <li><a href="#">Subelemento 2</a></li>
+                </ul>
+            </li>
+            <li>
+                <i class="fas fa-user toggle-btn"></i>
+                <ul class="login">
+                    <li><a href="#">Subelemento 1</a></li>
+                    <li><a href="#">Subelemento 2</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+</header>
+
+
+<main class="main-index">
+    <!-- Barra de navegación lateral -->
+    <aside class="nav-lateral">
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
+
+                <li>
+                    <i class="fas fa-users"></i> Usuarios
+                    <ul>
+                        <li><a href="/auth/nuevo-empleado"><i class="fas fa-user-plus"></i> Registrar</a></li>
+                        <li><a href="/auth/lista-empleado"><i class="fas fa-list"></i> Lista Empleados</a></li>
+                        <li><a href="/auth/registro-horas"><i class="fas fa-clock"></i> Registro de horas</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fas fa-box"></i> Inventario
+                    <ul>
+                        <li><a href="/auth/nuevo-producto"><i class="fas fa-box-open"></i> Crear producto</a></li>
+                        <li><a href="/auth/lista-insumo"><i class="fas fa-cogs"></i> Almacén</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fas fa-tachometer-alt"></i> Proyectos
+                    <ul>
+                        <li><a href="/auth/nuevo-proyecto"><i class="fas fa-plus-circle"></i> Nuevo</a></li>
+                        <li><a href="/auth/recibirPedidos"><i class="fas fa-receipt"></i> Recibir Pedidos</a></li>
+                        <li><a href="/auth/lista-proyectos"><i class="fas fa-list"></i> Lista Proyecto</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fas fa-box"></i> Transferencias
+                    <ul>
+                        <li><a href="/auth/transferir-almacen"><i class="fas fa-warehouse"></i> Transferir a
+                            almacén</a></li>
+                        <li><a href="/auth/ransferir-proyecto"><i class="fas fa-project-diagram"></i> Transferir a
+                            proyecto</a></li>
+                        <li><a href="/auth/lista-tranferencia"><i class="fas fa-list"></i> Lista de Transferencia</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fas fa-chart-line"></i> Reportes
+                    <ul>
+                        <li><a href="#"><i class="fas fa-project-diagram"></i> Avance en proyecto</a></li>
+                        <li><a href="#"><i class="fas fa-box"></i> Inventario de proyecto</a></li>
+                        <li><a href="#"><i class="fas fa-exclamation-triangle"></i> Insulto Faltantes</a></li>
+                    </ul>
+                </li>
+                <a href="/auth/login">Logout</a>
+            </ul>
+        </nav>
+    </aside>
+
+        <section>
+
+            <h2>Gestión de Materia Prima</h2>
+            <div class="tranferenciaProyecto">
+                <h3>Solicitud de Materia Prima</h3>
+                <form id="materialForm">
+                    <label for="fecha">Fecha:</label>
+                    <input type="text" id="fecha" name="fecha" required><br><br>
+
+                    <label for="Proyecto">Proyecto:</label>
+                    <input type="text" id="Proyecto" name="Proyecto" required><br><br>
+
+                    <label for="codigo">Código:</label>
+                    <input type="text" id="codigo" name="codigo" required><br><br>
+
+                    <label for="nombre">Descripción:</label>
+                    <input type="text" id="nombre" name="nombre" required><br><br>
+
+                    <label for="partNumber">Número de Parte:</label>
+                    <input type="text" id="partNumber" name="partNumber" required><br><br>
+
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" name="cantidad" required><br><br>
+
+                    <button type="submit">Agregar</button>
+                </form>
+
+                <h3>Listado de Materiales</h3>
+                <table id="materialList">
+                    <thead>
+                        <tr>
+                           
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            <th>Número de Parte</th>
+                            <th>Cantidad</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tranfeProjectBody">
+
+                    </tbody>
+                </table>
+                <button id="generateArrayButton">Generar Arreglo</button>
+
+
+                <div class="pedido">
+                    <h3>Pedidos Registrados</h3>
+                    <ul id="pedidosList">
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+<script src="/frontend/src/assets/transferenciaProyecto.js"></script>
+<script src="/frontend/src/assets/formdimanico.js"></script>
+
+</html>

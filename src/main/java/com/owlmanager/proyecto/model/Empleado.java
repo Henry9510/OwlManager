@@ -22,6 +22,7 @@ public class Empleado {
     private String segundo_nombre;
     private String segundo_apellido;
     private LocalDate fecha_ingreso;
+    private String cargo;
     private int edad;
     private String sexo;
     private String telefono;
@@ -32,11 +33,12 @@ public class Empleado {
     @Override
     public String toString() {
         return "Empleado{" +
-                "nombre='" + nombre + '\'' +
+                ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", segundo_nombre='" + segundo_nombre + '\'' +
                 ", segundo_apellido='" + segundo_apellido + '\'' +
                 ", fecha_ingreso=" + fecha_ingreso +
+                ", cargo='" + cargo + '\'' +
                 ", edad=" + edad +
                 ", sexo='" + sexo + '\'' +
                 ", telefono='" + telefono + '\'' +

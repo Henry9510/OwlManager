@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion Proyectos</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    .tabs {
+        display: flex;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+    .tab {
+        padding: 10px 20px;
+        background: #f1f1f1;
+        border: 1px solid #ccc;
+        margin-right: 5px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: black;
+    }
+    .tab:hover {
+        background: #e0e0e0;
+    }
+    .content {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        display: none; /* Ocultamos el contenido inicialmente */
+    }
+</style>
+</head>
+<body>
+
+<div class="tabs">
+    <div class="tab" onclick="loadContent('nuevo-proyecto')">Nuevo Proyecto</div>
+    <div class="tab" onclick="loadContent('lista-proyectos')">Listar Proyectos</div>
+    <div class="tab" onclick="loadContent('transferir-almacen')">Transferencia</div>
+</div>
+
+<div id="content" class="content">
+    <h2>Bienvenido</h2>
+    <p>Selecciona una pestaña para cargar el contenido.</p>
+</div>
+<script>
+function loadContent(page) {
+fetch(page)
+.then(response => {
+if (!response.ok) throw new Error('Error al cargar la página');
+return response.text();
+})
+.then(data => {
+document.getElementById('content').innerHTML = data;
+document.getElementById('content').style.display = 'block'; // Mostrar el contenido
+
+// Ejecutar el script de la página cargada
+const scripts = document.querySelectorAll('#content script');
+scripts.forEach(oldScript => {
+const newScript = document.createElement('script');
+newScript.src = oldScript.src; // Para scripts externos
+newScript.textContent = oldScript.textContent; // Para scripts internos
+document.body.appendChild(newScript);
+});
+})
+.catch(error => {
+console.error('Error:', error);
+document.getElementById('content').innerHTML = '<p>Error al cargar el contenido.</p>';
+});
+}
+</script>
+
+
+
+</body>
+</html>
