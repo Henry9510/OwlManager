@@ -1,8 +1,6 @@
 
 
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
     let botonCrear = document.getElementById("btnNuevoProyecto");
 

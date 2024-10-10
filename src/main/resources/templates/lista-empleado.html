@@ -92,8 +92,8 @@
 
     </section>
 
-    <section class="seccion-form" id="formEditarEmpleado">
-        <form class="formulario">
+    <section >
+        <form class="formulario" id="formEditarEmpleado" style="visibility: hidden">
                 <div class="info">
                     <h3>Información Personal</h3>
                     <div class="form-group">
@@ -152,11 +152,13 @@
                         <label for="fecha_ingreso">Fecha de Ingreso:</label>
                         <input type="date" id="fecha_ingreso" name="fecha_ingreso" required>
                     </div>
+                    <div class="btnModificar">
+                        <button id="btnModificarEmpleado" type="submit">Guardar</button>
+                    </div>
                 </div>
         </form>
-        <div class="btnModificar">
-            <button id="btnModificarEmpleado" type="submit">Guardar</button>
-        </div>
+
+
 </section>
 
 </main>

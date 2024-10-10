@@ -20,17 +20,25 @@ public class Insumos {
     private String nombre;
     private String procedencia;
 
+
     @ManyToOne( fetch = FetchType.EAGER)
-    @JoinColumn(name = "categoria", nullable = false)
+    @JoinColumn(name = "codigo_categoria", nullable = false)
     private Categoria categoria_insumo;
+
+    @ManyToOne( fetch = FetchType.EAGER)
+    @JoinColumn(name = "codigo_unidades", nullable = false)
+    private Unidades unidades_insumo;
+
 
     @Override
     public String toString() {
         return "Insumos{" +
-                "numero_parte='" + numero_parte + '\'' +
+                "codigo_insumo=" + codigo_insumo +
+                ", numero_parte='" + numero_parte + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", procedencia='" + procedencia + '\'' +
                 ", categoria_insumo=" + categoria_insumo +
+                ", unidades_insumo=" + unidades_insumo +
                 '}';
     }
 }

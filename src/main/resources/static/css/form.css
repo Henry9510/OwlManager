@@ -9,10 +9,9 @@
     --shadow-color: rgba(0, 0, 0, 0.2);
 }
 
-
 /* Estilos generales del formulario */
 .formulario {
-    width: 70%;
+    width: 100%;
     padding: 10px 20px;
     background: #fff;
     border-radius: 10px;
@@ -21,12 +20,15 @@
     gap: 10px;
     display: flex;
     flex-direction: row;
+    justify-self: center;
 }
 
 .form-group{
     display: flex;
     padding: 5px;
     flex-direction: column;
+    justify-self: center;
+
 }
 
 main{
@@ -42,13 +44,25 @@ main{
 
 .info{
     border-right: solid 0.2px gray;
-    width: 100%;
+
+
 }
 
 .info:last-child{
     border-right: none;
 }
 
+select {
+        width: 70%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+        color: #333;
+        transition: border-color 0.3s ease;
+
+}
 
 
 
@@ -58,7 +72,7 @@ input[type="number"],
 input[type="email"],
 input[type="tel"],
 input[type="date"] {
-    width: 80%;
+    width: 60%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -107,8 +121,6 @@ button[type="submit"]:hover {
     padding: 20px;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    align-content: center;
 }
 
 

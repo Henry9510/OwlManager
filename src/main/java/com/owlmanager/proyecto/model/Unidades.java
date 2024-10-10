@@ -7,21 +7,21 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@Table(name="categoria")
+@Table(name="unidades")
 @Entity
-public class Categoria {
+public class Unidades {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigo_categoria;
+    private Long codigo_unidades;
 
-    private String nombre_categoria;
+    private String nombre_unidad;
 
     @Override
     public String toString() {
-        return "Categoria{" +
-                "codigo_categoria=" + codigo_categoria +
-                ", nombre_categoria='" + nombre_categoria + '\'' +
+        return "Unidades{" +
+                "codigo_unidades=" + codigo_unidades +
+                ", nombre_unidad='" + nombre_unidad + '\'' +
                 '}';
     }
 }

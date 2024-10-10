@@ -2,6 +2,9 @@ package com.owlmanager.proyecto.Controller;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.owlmanager.proyecto.Repository.UnidadesRepository;
+import com.owlmanager.proyecto.model.Unidades;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +32,8 @@ public class InsumoController {
 
     @Autowired
     private final CategoriasRepository categoriasRepository;
+    @Autowired
+    private UnidadesRepository unidadesRepository;
 
     public InsumoController(InsumoRepository insumoRepository, CategoriasRepository categoriasRepository) {
         this.insumoRepository = insumoRepository;
@@ -53,11 +58,14 @@ public class InsumoController {
     @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PostMapping
     public ResponseEntity<Insumos> registrarInsumo(@RequestBody Insumos insumo) {
-        Categoria categoria = categoriasRepository.findById(insumo.getCategoria_insumo().getCodigo_categoria().intValue())
+        Categoria categoria = categoriasRepository.findById(insumo.getCategoria_insumo().getCodigo_categoria())
                 .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
+        Unidades unidades = unidadesRepository.findById(insumo.getUnidades_insumo().getCodigo_unidades())
+                .orElseThrow(() -> new RuntimeException("unidad no encontrada"));
 
         // Asignar la categoría al insumo
         insumo.setCategoria_insumo(categoria);
+        insumo.setUnidades_insumo(unidades);
 
         // Guardar el insumo en la base de datos
         Insumos savedRegistro = insumoRepository.save(insumo);
@@ -71,15 +79,21 @@ public class InsumoController {
         Insumos insumoExistente = insumoRepository.findById(codigo_insumo)
                 .orElseThrow(() -> new RuntimeException("Insumo no encontrado"));
 
+
         // Actualizar los campos
         insumoExistente.setNumero_parte(insumoActualizado.getNumero_parte());
         insumoExistente.setNombre(insumoActualizado.getNombre());
         insumoExistente.setProcedencia(insumoActualizado.getProcedencia());
 
         // Actualizar la categoría
-        Categoria categoria = categoriasRepository.findById(insumoActualizado.getCategoria_insumo().getCodigo_categoria().intValue())
+        Categoria categoria = categoriasRepository.findById(insumoActualizado.getCategoria_insumo().getCodigo_categoria())
                 .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
         insumoExistente.setCategoria_insumo(categoria);
+
+        Unidades unidades = unidadesRepository.findById(insumoActualizado.getUnidades_insumo().getCodigo_unidades())
+                .orElseThrow(() -> new RuntimeException("Unidad de medida no encontrada"));
+        insumoExistente.setUnidades_insumo(unidades);
+
 
         // Guardar los cambios en la base de datos
         Insumos insumoGuardado = insumoRepository.save(insumoExistente);
