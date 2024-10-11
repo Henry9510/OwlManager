@@ -99,10 +99,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="campo">
-                    <label for="proyecto">Proyecto:</label>
-                    <input type="number" id="proyecto" name="proyecto" min="0" required>
+                <div class="form-group">
+                    <label for="obtenerProyectos">Proyecto:</label>
+                    <select id="obtenerProyectos" name="obtenerProyectos" required>
+                        <option value="">Seleccione una Proyecto</option>
+                        <!-- Las opciones se poblarán dinámicamente desde la base de datos -->
+                    </select>
                 </div>
 
                 <div class="form-group">

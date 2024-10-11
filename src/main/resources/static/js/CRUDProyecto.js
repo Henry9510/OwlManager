@@ -7,10 +7,8 @@ window.onload = function () {
 let listarProyectos = async () => {
     try {
         const respuesta = await fetch('/api/proyecto', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+            method: 'GET', headers: {
+                'Accept': 'application/json', 'Content-Type': 'application/json'
             },
         });
 
@@ -43,10 +41,8 @@ let listarProyectos = async () => {
 let borrarProyecto = async (id) => {
     try {
         const respuesta = await fetch(`http://localhost:8080/api/proyecto/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+            method: 'DELETE', headers: {
+                'Accept': 'application/json', 'Content-Type': 'application/json'
             },
         });
 
@@ -88,10 +84,8 @@ let editarProyecto = async (codigo_proyecto) => {
 
     try {
         const peticion = await fetch(`http://localhost:8080/api/proyecto/${codigo_proyecto}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+            method: 'GET', headers: {
+                'Accept': 'application/json', 'Content-Type': 'application/json'
             }
         });
 
@@ -138,12 +132,9 @@ let aplicarActualizacion = async (id) => {
 
     try {
         const respuesta = await fetch(`http://localhost:8080/api/proyecto/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(campos)
+            method: 'PUT', headers: {
+                'Accept': 'application/json', 'Content-Type': 'application/json'
+            }, body: JSON.stringify(campos)
         });
 
         if (!respuesta.ok) {
@@ -153,7 +144,6 @@ let aplicarActualizacion = async (id) => {
 
         const datos = await respuesta.json();
         console.log('Proyecto actualizado con éxito:', datos);
-
         listarProyectos();
         ocultarFormulario();
 

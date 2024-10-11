@@ -1,134 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style-index.css"> <!-- Tu archivo CSS personalizado -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <link rel="icon" href="/img/favicon-32x32.png">
+    <link href="/css/form.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+    <title>Owl Manager Dashboard</title>
 </head>
 
 <body>
 <header>
-    <nav class="nav-cabecera">
-
+    <nav class="header">
         <div class="div-logo">
-            <a href="/auth/index"> <i class="fab fa-android"></i></a>
+            <img src="/img/buho.png" class="logoImg" alt="Logo de Owl Manager" style="width: 50px">
+            <a class="logotexto" href="/templates/index">Owl Manager Dashboard</a>
         </div>
-
-        <div class="nombreUsuario">
-            <p>Hola bienvenido...</p>
-        </div>
-
 
         <ul class="nav-list">
+            <li><a href="/templates/index" aria-label="Ir a inicio">Inicio</a></li>
+
             <li>
-                <i class="fas fa-cogs toggle-btn"></i>
-                <ul class="config">
-                    <li><a href="#">Subelemento 1</a></li>
-                    <li><a href="#">Subelemento 2</a></li>
+                <a aria-label="Gestión Usuarios">Gestión Usuarios</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-empleado" aria-label="Agregar nuevo empleado">Nuevo</a></li>
+                    <li><a href="/templates/lista-empleado" aria-label="Lista de empleados">Listado</a></li>
+                    <li><a href="/templates/registro-horas" aria-label="Registro de horas">Registro de Tiempo</a></li>
                 </ul>
             </li>
             <li>
-                <i class="fas fa-bell toggle-btn"></i>
-                <ul class="alert">
-                    <li><a href="#">Subelemento 1</a></li>
-                    <li><a href="#">Subelemento 2</a></li>
+                <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear producto</a></li>
+                    <li><a href="/templates/lista-insumo" aria-label="Ver almacén">Almacén</a></li>
                 </ul>
             </li>
             <li>
-                <i class="fas fa-user toggle-btn"></i>
-                <ul class="login">
-                    <li><a href="#">Subelemento 1</a></li>
-                    <li><a href="#">Subelemento 2</a></li>
+                <a href="/templates/gestionProyectos" aria-label="Gestión de Proyectos">Gestión de Proyectos</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-proyecto" aria-label="Agregar nuevo proyecto">Nuevo</a></li>
+                    <li><a href="/templates/recibirPedidos" aria-label="Recibir pedidos">Recibir Pedidos</a></li>
+                    <li><a href="/templates/lista-proyectos" aria-label="Lista de proyectos">Lista Proyecto</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="/templates/transferencias" aria-label="Gestión de Transferencias">Gestión de Transferencias</a>
+                <ul class="submenu">
+                    <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a
+                        almacén</a></li>
+                    <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a
+                        proyecto</a></li>
+                    <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de
+                        Transferencia</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/reportes" aria-label="Reportes">Reportes</a>
+                <ul class="submenu">
+                    <li><a href="#" aria-label="Ver avance en proyecto"><i class="fas fa-project-diagram"></i> Avance en
+                        proyecto</a></li>
+                    <li><a href="#" aria-label="Ver inventario de proyecto"><i class="fas fa-box"></i> Inventario de
+                        proyecto</a></li>
+                    <li><a href="#" aria-label="Ver insumos faltantes"><i class="fas fa-exclamation-triangle"></i>
+                        Insumos Faltantes</a></li>
+                </ul>
+            </li>
+            <li><a href="/templates/login" aria-label="Cerrar sesión">Logout</a></li>
         </ul>
     </nav>
-
 </header>
 
 
-<main class="main-index">
-    <!-- Barra de navegación lateral -->
-    <aside class="nav-lateral">
-        <nav>
-            <ul>
-                <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
+<main>
 
-                <li>
-                    <i class="fas fa-users"></i> Usuarios
-                    <ul>
-                        <li><a href="/auth/nuevo-empleado"><i class="fas fa-user-plus"></i> Registrar</a></li>
-                        <li><a href="/auth/lista-empleado"><i class="fas fa-list"></i> Lista Empleados</a></li>
-                        <li><a href="/auth/registro-horas"><i class="fas fa-clock"></i> Registro de horas</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <i class="fas fa-box"></i> Inventario
-                    <ul>
-                        <li><a href="/auth/nuevo-producto"><i class="fas fa-box-open"></i> Crear producto</a></li>
-                        <li><a href="/auth/lista-insumo"><i class="fas fa-cogs"></i> Almacén</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <i class="fas fa-tachometer-alt"></i> Proyectos
-                    <ul>
-                        <li><a href="/auth/nuevo-proyecto"><i class="fas fa-plus-circle"></i> Nuevo</a></li>
-                        <li><a href="/auth/recibirPedidos"><i class="fas fa-receipt"></i> Recibir Pedidos</a></li>
-                        <li><a href="/auth/lista-proyectos"><i class="fas fa-list"></i> Lista Proyecto</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <i class="fas fa-box"></i> Transferencias
-                    <ul>
-                        <li><a href="/auth/transferir-almacen"><i class="fas fa-warehouse"></i> Transferir a
-                            almacén</a></li>
-                        <li><a href="/auth/ransferir-proyecto"><i class="fas fa-project-diagram"></i> Transferir a
-                            proyecto</a></li>
-                        <li><a href="/auth/lista-tranferencia"><i class="fas fa-list"></i> Lista de Transferencia</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <i class="fas fa-chart-line"></i> Reportes
-                    <ul>
-                        <li><a href="#"><i class="fas fa-project-diagram"></i> Avance en proyecto</a></li>
-                        <li><a href="#"><i class="fas fa-box"></i> Inventario de proyecto</a></li>
-                        <li><a href="#"><i class="fas fa-exclamation-triangle"></i> Insulto Faltantes</a></li>
-                    </ul>
-                </li>
-                <a href="/auth/login">Logout</a>
-            </ul>
-        </nav>
-    </aside>
-        <section>
+    <section>
 
-            <h2>Gestión de Materia Prima</h2>
-            
-                <h3>Almacenar</h3>
-                <form>
+      
+        <form id="miFormulario">
+            <label>Fecha:</label>
+            <input type="date" id="fecha" required><br><br>
 
-                    <label>Codigo:</label>
-                    <input type="text" id="codigoProducto"><br><br>
+            <label>Insumo:</label>
+            <input type="text" id="insumo" required>
+            <button type="button" id="buscarInsumo" title="Buscar Insumo">🔍</button>
+            <br><br>
 
-                    <label>Descripcion:</label>
-                    <input type="text" id="descripcionProducto"><br><br>
+            <label>Cantidad:</label>
+            <input type="number" id="cantidad_entrada" required><br><br>
 
-                    <label>Cantidad:</label>
-                    <input type="number" id="cantidad"><br><br>
-                    <label>Imagen</label>
-                    <input type="file">
-                    <br><br>
-                    <button type="submit">Guardar</button>
+            <label>Ubicación:</label>
+            <input type="text" id="Estante" required><br><br>
 
-                </form>
+            <button type="submit">Guardar</button>
+        </form>
 
-        </section>
+    </section>
 
-
+</main>
 </body>
 
 </html>

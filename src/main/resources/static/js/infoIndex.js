@@ -39,9 +39,8 @@ let listarProyectos = async () => {
             const resaltarFila = horasReales > horasEstimadas * 0.7; // Mayor al 70%
             const claseFila = resaltarFila ? 'fila-resaltada' : '';
             contenidoTabla += `<tr class="${claseFila}">
-                <td>${proyecto.id}</td>
-                <td>${proyecto.numeroProyecto}</td>
-                <td>${proyecto.descripcionProyecto}</td>
+                <td>${proyecto.codigo_proyecto}</td>
+                <td>${proyecto.descripcion_proyecto}</td>
                 <td>${horasEstimadas}</td>
                 <td>${horasReales}</td>
             </tr>`;

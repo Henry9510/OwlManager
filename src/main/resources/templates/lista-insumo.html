@@ -72,6 +72,9 @@
         <table id="tablaInsumos">
             <thead>
             <tr>
+                <th colspan="8">Productos</th>
+            </tr>
+            <tr>
                 <th>Codigo</th>
                 <th>Descripcion</th>
                 <th>Numero de Parte</th>
@@ -89,7 +92,7 @@
 
     </section>
     <section>
-    <form class="formulario" id="formEditarInsumo">
+    <form class="formulario" id="formEditarInsumo" style="display: none">
         <div class="info">
             <div class="form-group">
                 <label for="codigo_insumo">Código:</label>
@@ -110,8 +113,8 @@
                 <label for="procedencia">Procedencia:</label>
                 <select id="procedencia" name="procedencia" required>
                     <option value="">Seleccione procedencia</option>
-                    <option value="nacional">Nacional</option>
-                    <option value="importado">Importado</option>
+                    <option value="NACIONAL">NACIONAL</option>
+                    <option value="IMPORTADO">IMPORTADO</option>
                 </select>
             </div>
 
