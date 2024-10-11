@@ -23,14 +23,20 @@ public class Proyecto {
     private  int horas_estimadas;
     private int horas_reales;
 
+    @ManyToOne
+    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
+    private Estado estado_proyecto;
+
     @Override
     public String toString() {
         return "Proyecto{" +
-                "descripcion_proyecto='" + descripcion_proyecto + '\'' +
-                ", fechaInicio=" + fecha_inicio +
+                "codigo_proyecto=" + codigo_proyecto +
+                ", descripcion_proyecto='" + descripcion_proyecto + '\'' +
+                ", fecha_inicio=" + fecha_inicio +
                 ", fecha_fin=" + fecha_fin +
                 ", horas_estimadas=" + horas_estimadas +
                 ", horas_reales=" + horas_reales +
+                ", estado_proyecto=" + estado_proyecto +
                 '}';
     }
 }

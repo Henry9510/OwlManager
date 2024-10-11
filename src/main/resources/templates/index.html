@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="/css/index.css" rel="stylesheet">
     <title>Owl Manager Dashboard</title>
 </head>
@@ -96,7 +97,6 @@
                 </div>
             </div>
         </section>
-
         <section class="tables">
             <div class="tablas-mes">
                 <div class="table-container-1">
@@ -104,10 +104,12 @@
                     <table id="tablaProyectoMes">
                         <thead>
                         <tr>
+                            <th>Fecha inicio</th>
                             <th>Número de Proyecto</th>
                             <th>Descripción</th>
                             <th>Horas Estimadas</th>
                             <th>Horas Reales</th>
+                            <th>Fecha Fin</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -120,25 +122,28 @@
                     <table id="tablaProyectoMesTerminados">
                         <thead>
                         <tr>
-                            <th>Fecha Finalización</th>
-                            <th>Proyecto</th>
+                            <th>Código Proyecto</th>
+                            <th>Descripción</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
                             <th>Horas Estimadas</th>
                             <th>Horas Reales</th>
+                            <th>Estado</th>
                         </tr>
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> <!-- Asegúrate de cerrar el div aquí -->
+        </section>
 
             <div class="tablas-indicadores">
                 <div class="table-container-3">
                     <h2>Horas por Proyecto</h2>
-                    <table id="tablaHorasHombre">
+                    <table id="tablaHorasHombre" style="visibility: hidden">
                         <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Número de Proyecto</th>
                             <th>Descripción</th>
                             <th>Horas Estimadas</th>
@@ -148,6 +153,7 @@
                         <tbody>
                         </tbody>
                     </table>
+                    <canvas id="graficoHoras" width="400" height="200"></canvas>
                 </div>
 
                 <div class="table-container-4">

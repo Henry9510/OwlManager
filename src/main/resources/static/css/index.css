@@ -197,3 +197,16 @@ table th {
     color: var(--color-secundario);
     text-align: center;
 }
+
+.fila-resaltada {
+    background-color: #dc3545; /* Un color rojo claro */
+    font-weight: bold; /* Opcional, para hacer el texto más visible */
+}
+
+#graficoHoras {
+    display: block;
+    width: 80% !important; /* Asegura que el canvas ocupe todo el ancho disponible */
+    height: auto !important; /* Ajusta la altura automáticamente */
+    max-height: 300px; /* Establece una altura máxima compacta */
+    margin: 20px 0; /* Margen para separarlo de otros elementos */
+}
