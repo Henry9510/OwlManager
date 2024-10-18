@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="/css/index.css" rel="stylesheet">
     <link href="/css/form.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
     <title>Owl Manager Dashboard</title>
 </head>
 
@@ -32,12 +32,8 @@
             <li>
                 <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
                 <ul class="submenu">
-
-                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear Producto</a></li>
-                    <li><a href="/templates/lista-insumo" aria-label="Ver productos">Lista de Productos</a></li>
-                    <li><a href="/templates/almacen" aria-label="Almacenar">Ubicar en Almacén</a></li>
-                    <li><a href="/templates/lista-almacenaje" aria-label="lista almacen">Alamcen</a></li>
-
+                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear producto</a></li>
+                    <li><a href="/templates/lista-insumo" aria-label="Ver almacén">Almacén</a></li>
                 </ul>
             </li>
             <li>
@@ -75,76 +71,40 @@
     </nav>
 </header>
 
+
 <main>
+
     <section>
 
-        <form class="formulario" id="formSalidas">
-            <div class="info">
-                <div class="form-group">
-                    <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha" name="fecha" required><br>
-                </div>
 
-                <div class="form-group">
-                    <label for="Proyecto">Proyecto:</label>
-                    <input type="number" id="Proyecto" name="Proyecto" required><br>
-                </div>
+        <form id="miFormulario">
+            <label>Fecha:</label>
+            <input type="date" id="fecha" required><br><br>
 
-                <div class="form-group">
-                    <label for="codigo">Código de Insumo:</label>
-                    <input type="number" id="codigo" name="codigo" required><br>
-                </div>
 
-                <div class="form-group">
-                    <label for="nombre">Descripción:</label>
-                    <input type="text" id="nombre" name="nombre" required><br>
-                </div>
+            <label>Codigo Insumo:</label>
+            <input type="number" id="insumo" required>
 
-                <div class="form-group">
-                    <label for="partNumber">Número de Parte:</label>
-                    <input type="text" id="partNumber" name="partNumber" required><br>
-                </div>
+            <button type="button" id="buscarInsumo" title="Buscar Insumo">🔍</button>
+            <br>
+            <br>
+            <span id="mensaje-error" style="color: red;"></span>
+            <br>
 
-                <div class="form-group">
-                    <label for="cantidad">Cantidad a enviar:</label>
-                    <input type="number" id="cantidad" name="cantidad" required><br>
-                </div>
+            <label>Descripcion:</label>
+            <input type="text" id="description"><br><br>
 
-                <div class="form-group">
-                    <button type="submit">Agregar</button>
-                </div>
-            </div>
+
+            <label>Ubicación:</label>
+            <input type="number" id="estante" required><br><br>
+
+            <button id="btn-nuevo" type="submit">Guardar</button>
         </form>
 
-
-        <h3>Listado de Materiales</h3>
-        <table id="materialList">
-            <thead>
-            <tr>
-
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Número de Parte</th>
-                <th>Cantidad</th>
-                <th>Acción</th>
-            </tr>
-            </thead>
-            <tbody id="tranfeProjectBody">
-
-            </tbody>
-        </table>
-        <button id="generateArrayButton">Generar Arreglo</button>
-
-
-        <div class="pedido">
-            <h3>Pedidos Registrados</h3>
-            <ul id="pedidosList">
-            </ul>
-        </div>
     </section>
-</main>
-</body>
-<script src="/js/transferenciaProyecto.js"></script>
 
+</main>
+<script src="/js/almacenarProducto.js"></script>
+</body>
 
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
+
 
 <head>
     <meta charset="UTF-8">
@@ -76,28 +77,39 @@
 
     <section>
 
-      
+
         <form id="miFormulario">
             <label>Fecha:</label>
             <input type="date" id="fecha" required><br><br>
 
-            <label>Insumo:</label>
-            <input type="text" id="insumo" required>
+
+            <label>Codigo Insumo:</label>
+            <input type="number" id="insumo" required>
+
             <button type="button" id="buscarInsumo" title="Buscar Insumo">🔍</button>
-            <br><br>
+            <br>
+            <br>
+            <span id="mensaje-error" style="color: red;"></span>
+            <br>
+
+            <label>Descripcion:</label>
+            <input type="text" id="description"><br><br>
 
             <label>Cantidad:</label>
-            <input type="number" id="cantidad_entrada" required><br><br>
+            <input type="number" id="cantidad_entrada" required>
+            <br><br>
 
             <label>Ubicación:</label>
-            <input type="text" id="Estante" required><br><br>
+            <input type="number" id="Estante" required><br><br>
 
-            <button type="submit">Guardar</button>
+            <button id="btn-nuevo" type="button">Guardar</button>
+
         </form>
 
     </section>
 
 </main>
+<script src="/js/newTransferenciaAlmacen.js"></script>
 </body>
 
 </html>

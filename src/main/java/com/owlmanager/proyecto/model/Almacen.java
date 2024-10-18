@@ -5,33 +5,25 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Setter
 @Getter
-@Table(name="almacen")
 @Entity
+@Table(name = "almacen")
 public class Almacen {
-    
-    @Id
-    private long ubicacion;
 
-    @ManyToOne( fetch = FetchType.EAGER)
-    @JoinColumn(name = "codigo_insumo")
-    private Insumos codigo_insumo;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long ubicacion;
 
+        @ManyToOne(fetch = FetchType.EAGER)
+        @JoinColumn(name = "codigo_insumo", nullable = false)
+        private Insumos insumo;
 
-    private int entrada;
-    private  int salida;
-    private int status;
-    private int stock;
-
-    @Override
-    public String toString() {
-        return "Almacen{" +
-                "codigo_insumo=" + codigo_insumo +
-                ", entrada=" + entrada +
-                ", salida=" + salida +
-                ", status=" + status +
-                ", stock=" + stock +
-                '}';
-    }
+        private LocalDate fecha;
+        private int entrada;
+        private int salida;
+        private String status;
+        private int stock;
 }

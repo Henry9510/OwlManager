@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
-<html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -73,15 +72,17 @@
         <table id="tablaInsumos">
             <thead>
             <tr>
-                <th colspan="8">Productos</th>
+                <th colspan="10">Productos</th>
             </tr>
             <tr>
+                <th>Ubicacion</th>
                 <th>Codigo</th>
                 <th>Descripcion</th>
                 <th>Numero de Parte</th>
                 <th>Procedencia</th>
                 <th>Unidad</th>
                 <th>Categoria</th>
+                <th>Stock</th>
 
                 <th colspan="2">Opciones</th>
             </tr>
@@ -96,8 +97,14 @@
     <form class="formulario" id="formEditarInsumo" style="display: none">
         <div class="info">
             <div class="form-group">
+                <label>Ubicación:</label>
+                <input type="number" id="estante" required><br><br>
+
+            </div>
+
+            <div class="form-group">
                 <label for="codigo_insumo">Código:</label>
-                <input type="number" id="codigo_insumo" name="codigo_insumo" >
+                <input type="number" id="codigo_insumo" name="codigo_insumo" disabled>
             </div>
 
             <div class="form-group">
@@ -136,6 +143,14 @@
                     <!-- Opciones se llenarán dinámicamente desde JavaScript -->
                 </select>
             </div>
+            <div class="form-group">
+                <label for="entrada">Cantidad almacenada:</label>
+                <input type="number" id="entrada" name="entrada" >
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock:</label>
+                <input type="number" id="stock" name="stock" disabled>
+            </div>
 
             <div class="btnModificar">
                 <button id="btnModificar" type="submit">Modificar</button>
@@ -148,7 +163,7 @@
 </section>
     </main>
 
-    <script src="/js/CRUDProducto.js"></script>
+    <script src="/js/CRUDalmacen.js"></script>
 
 
 

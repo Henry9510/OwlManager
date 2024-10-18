@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SalidasRepository extends JpaRepository <RegistroTransferenciaProyecto, Long> {
+public interface RegistroTransferenciaProyectoRepository extends JpaRepository<RegistroTransferenciaProyecto, Long> {
 }

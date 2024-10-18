@@ -2,6 +2,9 @@ package com.owlmanager.proyecto.model;
 
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,36 +12,23 @@ import java.time.LocalDate;
 
 @Setter
 @Getter
-@Table(name="transferenciasinsumos")
 @Entity
+@Table(name = "registro_transferencia_proyecto")
 public class RegistroTransferenciaProyecto {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idtranferenciasinsumo", nullable = false)
-    private long idtranferenciasinsumo;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long idTransferencia;
+
+        private LocalDate fecha;
+
+        @ManyToOne(fetch = FetchType.EAGER)
+        @JoinColumn(name = "codigo_proyecto", nullable = false)
+        private Proyecto proyecto;
+
+        @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+        @JoinColumn(name = "id_transferencia")
+        private List<InsumoTransferido> insumos;
 
 
-    private int cantidad_salida;
-    private LocalDate fecha;
-
-    @ManyToOne( fetch = FetchType.EAGER)
-    @JoinColumn(name = "numero_proyecto")
-    private Proyecto proyecto;
-
-
-    @ManyToOne( fetch = FetchType.EAGER)
-    @JoinColumn(name = "codigo_insumo")
-    private Insumos insumo;
-
-
-    @Override
-    public String toString() {
-        return "RegistroTransferenciaProyecto{" +
-                "cantidad_salida=" + cantidad_salida +
-                ", fecha=" + fecha +
-                ", proyecto=" + proyecto +
-                ", insumo=" + insumo +
-                '}';
-    }
 }
