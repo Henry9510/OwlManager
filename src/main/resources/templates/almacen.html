@@ -1,43 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="/css/form.css" rel="stylesheet">
     <link href="/css/index.css" rel="stylesheet">
     <title>Owl Manager Dashboard</title>
-    <style>
-
-section{
-    padding: 40px;
-
-}table {
-     border: none; /* Eliminar el borde de la tabla */
-     border-collapse: collapse; /* Colapsar los bordes */
- }
-
-th, td {
-    border: none; /* Eliminar el borde de las celdas */
-    padding: 8px; /* Espaciado interno para las celdas */
-}
-
-th {
-    background-color: transparent; /* Fondo transparente para encabezados */
-}
-
-input {
-    border: none; /* Eliminar el borde de los campos de entrada */
-    width: 100%; /* Hacer que los campos de entrada llenen el espacio */
-    padding: 8px; /* Espaciado interno para los campos de entrada */
-    box-sizing: border-box; /* Incluir padding y borde en el ancho total */
-    outline: none; /* Eliminar el contorno al seleccionar */
-}
-
-button {
-    cursor: pointer; /* Cambiar el cursor al pasar por encima */
-}
-    </style>
 </head>
 
 <body>
@@ -105,67 +75,37 @@ button {
 <main>
 
     <section>
-        <form class="formulario-transferencia" id="formTranferenciaAlmacen">
-            <div class="form-group" style="
-        width: 200px;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        box-sizing: border-box;
-        font-size: 16px;
-        color: #333;
-        transition: border-color 0.3s ease; align-self: center">
 
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" required>
-            </div>
 
-            <table id="insumo-table" style="width: 100%; margin-top: 20px;">
-                <thead>
-                <tr>
-                    <th>Código Insumo</th>
-                    <th>Ubicación</th>
-                    <th>Descripción</th>
-                    <th>Número de Parte</th>
-                    <th>Cantidad</th>
-                    <th>Acciones</th>
-                </tr>
-                </thead>
-                <tbody id="insumo-container">
-                <tr class="insumo-row">
-                    <td>
-                        <input type="text" name="codigo_insumo" required>
-                    </td>
-                    <td>
-                        <input type="text" name="ubicacion" required>
-                    </td>
-                    <td>
-                        <input type="text" name="descripcion" required>
-                    </td>
-                    <td>
-                        <input type="text" name="partNumber" required>
-                    </td>
-                    <td>
-                        <input type="number" name="cantidad_entrada" required>
-                    </td>
-                    <td>
-                        <button type="button" class="removeInsumoButton">-</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <form id="miFormulario">
 
-            <button type="button" id="addInsumoButton" style="display: flex; align-self: center; margin-top: 10px">+</button>
-            <button type="submit" id="saveButton" style="width: 200px; align-self: center; height: 40px; margin-top: 10px">Guardar</button>
+            <label>Codigo Insumo:</label>
+            <input type="number" id="insumo" required>
+
+            <button type="button" id="buscarInsumo" title="Buscar Insumo">🔍</button>
+            <br>
+            <br>
+            <span id="mensaje-error" style="color: red;"></span>
+            <br>
+
+            <label>Descripcion:</label>
+            <input type="text" id="description"><br><br>
+
+            <label>Numero de parte:</label>
+            <input type="text" id="numero_parte"><br><br>
+
+
+
+            <label>Ubicación:</label>
+            <input type="number" id="estante" required><br><br>
+
+            <button id="btn-nuevo" type="submit">Guardar</button>
         </form>
-
 
     </section>
 
 </main>
-<script src="/js/transferenciaAlmacen.js"></script>
+<script src="/js/almacenarProducto.js"></script>
 </body>
-
-
 
 </html>

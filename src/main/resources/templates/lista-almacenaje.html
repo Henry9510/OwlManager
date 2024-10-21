@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="/css/form.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+    <title>Owl Manager Dashboard</title>
+</head>
+
+<body>
+<header>
+    <nav class="header">
+        <div class="div-logo">
+            <img src="/img/buho.png" class="logoImg" alt="Logo de Owl Manager" style="width: 50px">
+            <a class="logotexto" href="/templates/index">Owl Manager Dashboard</a>
+        </div>
+
+        <ul class="nav-list">
+            <li><a href="/templates/index" aria-label="Ir a inicio">Inicio</a></li>
+
+            <li>
+                <a aria-label="Gestión Usuarios">Gestión Usuarios</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-empleado" aria-label="Agregar nuevo empleado">Nuevo</a></li>
+                    <li><a href="/templates/lista-empleado" aria-label="Lista de empleados">Listado</a></li>
+                    <li><a href="/templates/registro-horas" aria-label="Registro de horas">Registro de Tiempo</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear producto</a></li>
+                    <li><a href="/templates/lista-insumo" aria-label="Ver almacén">Almacén</a></li>
+                    <li><a href="/templates/almacen" aria-label="Almacenar">Ubicar en almacén</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/gestionProyectos" aria-label="Gestión de Proyectos">Gestión de Proyectos</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-proyecto" aria-label="Agregar nuevo proyecto">Nuevo</a></li>
+                    <li><a href="/templates/recibirPedidos" aria-label="Recibir pedidos">Recibir Pedidos</a></li>
+                    <li><a href="/templates/lista-proyectos" aria-label="Lista de proyectos">Lista Proyecto</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/transferencias" aria-label="Gestión de Transferencias">Gestión de Transferencias</a>
+                <ul class="submenu">
+                    <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a almacén</a></li>
+                    <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a proyecto</a></li>
+                    <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de Transferencia</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/reportes" aria-label="Reportes">Reportes</a>
+                <ul class="submenu">
+                    <li><a href="#" aria-label="Ver avance en proyecto"><i class="fas fa-project-diagram"></i> Avance en proyecto</a></li>
+                    <li><a href="#" aria-label="Ver inventario de proyecto"><i class="fas fa-box"></i> Inventario de proyecto</a></li>
+                    <li><a href="#" aria-label="Ver insumos faltantes"><i class="fas fa-exclamation-triangle"></i> Insumos Faltantes</a></li>
+                </ul>
+            </li>
+            <li><a href="/templates/login" aria-label="Cerrar sesión">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <section>
+        <table id="tablaInsumos">
+            <thead>
+            <tr>
+                <th colspan="10">Productos</th>
+            </tr>
+            <tr>
+                <th>Ubicacion</th>
+                <th>Codigo</th>
+                <th>Descripcion</th>
+                <th>Numero de Parte</th>
+                <th>Procedencia</th>
+                <th>Unidad</th>
+                <th>Categoria</th>
+                <th>Stock</th>
+
+                <th colspan="2">Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Las filas de datos se agregarán aquí dinámicamente -->
+            </tbody>
+        </table>
+
+    </section>
+    <section>
+    <form class="formulario" id="formEditarInsumo" style="display: none">
+        <div class="info">
+            <div class="form-group">
+                <label>Ubicación:</label>
+                <input type="number" id="estante" required><br><br>
+
+            </div>
+
+            <div class="form-group">
+                <label for="codigo_insumo">Código:</label>
+                <input type="number" id="codigo_insumo" name="codigo_insumo" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="nombre">Descripción:</label>
+                <input type="text" id="nombre" name="nombre">
+            </div>
+
+            <div class="form-group">
+                <label for="numero_parte">Número de Parte:</label>
+                <input type="text" id="numero_parte" name="numero_parte">
+            </div>
+
+            <div class="form-group">
+                <label for="procedencia">Procedencia:</label>
+                <select id="procedencia" name="procedencia" required>
+                    <option value="">Seleccione procedencia</option>
+                    <option value="NACIONAL">NACIONAL</option>
+                    <option value="IMPORTADO">IMPORTADO</option>
+                </select>
+            </div>
+
+            <!-- Campo Unidad, opciones pobladas desde la base de datos -->
+            <div class="form-group">
+                <label for="unidad">Unidades de Producto:</label>
+                <select id="unidad" name="unidad">
+                    <option value="" disabled selected>Seleccione una unidad</option>
+                    <!-- Opciones se llenarán dinámicamente desde JavaScript -->
+                </select>
+            </div>
+
+            <!-- Campo Categoría, opciones pobladas desde la base de datos -->
+            <div class="form-group">
+                <label for="categoria_insumo">Categoría:</label>
+                <select id="categoria_insumo" name="categoria_insumo">
+                    <option value="" disabled selected>Seleccione una categoría</option>
+                    <!-- Opciones se llenarán dinámicamente desde JavaScript -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="entrada">Cantidad almacenada:</label>
+                <input type="number" id="entrada" name="entrada" >
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock:</label>
+                <input type="number" id="stock" name="stock" disabled>
+            </div>
+
+            <div class="btnModificar">
+                <button id="btnModificar" type="submit">Modificar</button>
+            </div>
+        </div>
+
+
+    </form>
+
+</section>
+    </main>
+
+    <script src="/js/CRUDalmacen.js"></script>
+
+
+
+</body>
+
+
+
+</html>

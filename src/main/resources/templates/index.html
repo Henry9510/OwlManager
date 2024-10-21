@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/tablas.css" rel="stylesheet">
     <title>Owl Manager Dashboard</title>
 </head>
 
@@ -32,8 +33,12 @@
             <li>
                 <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
                 <ul class="submenu">
-                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear producto</a></li>
-                    <li><a href="/templates/lista-insumo" aria-label="Ver almacén">Almacén</a></li>
+
+                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear Producto</a></li>
+                    <li><a href="/templates/lista-insumo" aria-label="Ver productos">Lista de Productos</a></li>
+                    <li><a href="/templates/almacen" aria-label="Almacenar">Ubicar en Almacén</a></li>
+                    <li><a href="/templates/lista-almacenaje" aria-label="lista almacen">Alamcen</a></li>
+
                 </ul>
             </li>
             <li>
@@ -138,42 +143,41 @@
             </div> <!-- Asegúrate de cerrar el div aquí -->
         </section>
 
-            <div class="tablas-indicadores">
-                <div class="table-container-3">
-                    <h2>Horas por Proyecto</h2>
-                    <table id="tablaHorasHombre" style="visibility: hidden">
-                        <thead>
-                        <tr>
-                            <th>Número de Proyecto</th>
-                            <th>Descripción</th>
-                            <th>Horas Estimadas</th>
-                            <th>Horas Reales</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                    <canvas id="graficoHoras" width="400" height="200"></canvas>
-                </div>
-
-                <div class="table-container-4">
-                    <h2>Consumo y Faltantes por Proyecto</h2>
-                    <table id="consumoFaltantes">
-                        <thead>
-                        <tr>
-                            <th>Numero proyecto</th>
-                            <th>faltantes</th>
-                            <th>totales</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
+        <div class="tablas-indicadores">
+            <div class="table-container-3">
+                <h2>Horas por Proyecto</h2>
+                <table id="tablaHorasHombre" style="visibility: hidden">
+                    <thead>
+                    <tr>
+                        <th>Número de Proyecto</th>
+                        <th>Descripción</th>
+                        <th>Horas Estimadas</th>
+                        <th>Horas Reales</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <canvas id="graficoHoras" width="400" height="200"></canvas>
             </div>
-        </section>
+
+            <div class="table-container-4">
+                <h2>Consumo y Faltantes por Proyecto</h2>
+                <table id="consumoFaltantes">
+                    <thead>
+                    <tr>
+                        <th>Numero proyecto</th>
+                        <th>faltantes</th>
+                        <th>totales</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </section>
     <div class="carga">
         <button type="submit" id="cargaMasiva">CARGA MASIVA</button>

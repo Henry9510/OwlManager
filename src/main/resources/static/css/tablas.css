@@ -1,0 +1,47 @@
+
+.tables {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.table-container-1,
+.table-container-2,
+.table-container-3,
+.table-container-4 {
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: var(--color-contenedores);
+    color: var(--color-secundario);
+    text-align: center;
+}
+
+.fila-resaltada {
+    background-color: #dc3545; /* Un color rojo claro */
+    font-weight: bold; /* Opcional, para hacer el texto más visible */
+}
+
+#graficoHoras {
+    display: block;
+    width: 80% !important; /* Asegura que el canvas ocupe todo el ancho disponible */
+    height: auto !important; /* Ajusta la altura automáticamente */
+    max-height: 300px; /* Establece una altura máxima compacta */
+    margin: 20px 0; /* Margen para separarlo de otros elementos */
+}

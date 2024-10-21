@@ -24,14 +24,5 @@ public class Almacen {
     private int status;
     private int stock;
 
-    @Override
-    public String toString() {
-        return "Almacen{" +
-                "codigo_insumo=" + codigo_insumo +
-                ", entrada=" + entrada +
-                ", salida=" + salida +
-                ", status=" + status +
-                ", stock=" + stock +
-                '}';
-    }
+
 }

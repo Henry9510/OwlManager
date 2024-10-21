@@ -29,7 +29,7 @@ public class RegistroEntradasAlmacen {
     
     @ManyToOne( fetch = FetchType.EAGER)
     @JoinColumn(name = "ubicacion")
-    private Almacen Estante;
+    private Almacen estante;
 
 
     @Override
@@ -38,7 +38,7 @@ public class RegistroEntradasAlmacen {
                 ", cantidad_entrada=" + cantidad_entrada +
                 ", fecha=" + fecha +
                 ", insumo=" + insumo +
-                ", Estante=" + Estante +
+                ", estante=" + estante +
                 '}';
     }
 }

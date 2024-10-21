@@ -3,6 +3,8 @@ package com.owlmanager.proyecto.Controller;
 import java.util.List;
 import java.util.Optional;
 
+
+import com.owlmanager.proyecto.execption.ResourceNotFoundException;
 import com.owlmanager.proyecto.model.Almacen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,27 +54,36 @@ public class RegistroEntradaAlmacenController {
 
     }
 
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PostMapping
-    public ResponseEntity<RegistroEntradasAlmacen> guardarRegistroEntradas(@RequestBody RegistroEntradasAlmacen registroEntradasAlmacen) {
-        // Fetch the Insumo based on the provided codigo_insumo
-        Insumos insumos = insumoRepository.findById(registroEntradasAlmacen.getInsumo().getCodigo_insumo())
-                .orElseThrow(() -> new RuntimeException("Insumo no encontrado"));
+    public ResponseEntity<String> guardarRegistroEntradas(@RequestBody RegistroEntradasAlmacen registroEntradasAlmacen) {
+        // Validar que los campos necesarios no sean nulos o vacíos
+        if (registroEntradasAlmacen.getInsumo() == null || registroEntradasAlmacen.getInsumo().getCodigo_insumo() == null) {
+            return ResponseEntity.badRequest().body("El código del insumo es obligatorio.");
+        }
 
-        Almacen almacen = almacenRepository.findById(registroEntradasAlmacen.getEstante().getUbicacion())
-                .orElseThrow(() -> new RuntimeException("Ubicacion no encontrada"));
+        if (registroEntradasAlmacen.getEstante() == null || registroEntradasAlmacen.getEstante().getUbicacion()== 0) {
+            return ResponseEntity.badRequest().body("La ubicación del estante es obligatoria.");
+        }
 
+        // Verificar si el insumo existe
+        Insumos insumo = insumoRepository.findById(registroEntradasAlmacen.getInsumo().getCodigo_insumo())
+                .orElseThrow(() -> new IllegalArgumentException("Insumo no encontrado"));
 
-        // Set the fetched Insumos into RegistroEntradasAlmacen
-        registroEntradasAlmacen.setInsumo(insumos);
-        registroEntradasAlmacen.setEstante(almacen);
+        // Verificar si la ubicación existe
+        Almacen estante = almacenRepository.findById(registroEntradasAlmacen.getEstante().getUbicacion())
+                .orElseThrow(() -> new IllegalArgumentException("Ubicación no encontrada"));
 
-        // Save the RegistroEntradasAlmacen entity
-        RegistroEntradasAlmacen savedRegistro = registroEntradasAlmacenRepository.save(registroEntradasAlmacen);
+        // Asignar insumo y estante al registro
+        registroEntradasAlmacen.setInsumo(insumo);
+        registroEntradasAlmacen.setEstante(estante);
 
-        // Return a response with status CREATED
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedRegistro);
+        // Guardar el registro en la base de datos
+        registroEntradasAlmacenRepository.save(registroEntradasAlmacen);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("Registro guardado exitosamente");
     }
+
+
 
     @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PutMapping("/{id}")

@@ -96,6 +96,19 @@ import org.springframework.web.bind.annotation.GetMapping;
         }
 
 
+        @GetMapping("/templates/almacen")
+        public String almacen() {
+            return "almacen"; // Debe corresponder a login.html
+        }
+
+
+
+        @GetMapping("/templates/lista-almacenaje")
+        public String lista_almacenaje() {
+            return "lista-almacenaje"; // Debe corresponder a login.html
+        }
+
+
 
     }
 
