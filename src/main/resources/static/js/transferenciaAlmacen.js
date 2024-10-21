@@ -86,51 +86,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     saveButton.addEventListener('click', () => {
         const rows = insumoContainer.querySelectorAll('.insumo-row');
-        const insumosData = [];
         const fechaRegistro = document.getElementById("fecha").value;
 
         rows.forEach(row => {
             const codigo = row.querySelector('input[name="codigo_insumo"]').value;
             const cantidadEntrada = row.querySelector('input[name="cantidad_entrada"]').value;
-            const ubicacion = row.querySelector('input[name="ubicacion"]').value; // Asegúrate de tener este campo
+            const ubicacion = row.querySelector('input[name="ubicacion"]').value;
 
             if (codigo && cantidadEntrada) {
-                insumosData.push({
-                    cantidad_entrada: parseInt(cantidadEntrada), // Asegúrate de que sea un número
-                    fecha: fechaRegistro, // Formato "YYYY-MM-DD"
+                const registroEntradasAlmacen = {
+                    cantidad_entrada: parseInt(cantidadEntrada),
+                    fecha: fechaRegistro,
                     insumo: {
-                        codigo_insumo: parseInt(codigo), // Asegúrate de que sea un número
+                        codigo_insumo: parseInt(codigo),
                     },
                     estante: {
-                        ubicacion: parseInt(ubicacion), // Asegúrate de que sea un número
-                    }
-                });
+                        ubicacion: parseInt(ubicacion),
+                    },
+                    entrada: 0,
+                    salida: 0,
+                    status: 0,
+                    stock: 0
+                };
+
+                console.log('Datos a enviar:', JSON.stringify(registroEntradasAlmacen, null, 2));
+
+                // Enviar datos al backend para cada fila
+                fetch('http://localhost:8080/api/registro-entradas-almacen', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(registroEntradasAlmacen), // Envía el objeto de la fila
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Insumo actualizado exitosamente');
+                        } else {
+                            return response.json().then(err => {
+                                throw new Error('Error al actualizar insumo: ' + JSON.stringify(err));
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Ocurrió un error al actualizar el insumo');
+                    });
             }
         });
-
-        // Enviar datos al backend
-        fetch('http://localhost:8080/api/registro-entradas-almacen', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(insumosData),
-        })
-            .then(response => {
-                if (response.ok) {
-                    alert('Insumos actualizados exitosamente');
-                } else {
-                    return response.json().then(err => {
-                        throw new Error('Error al actualizar insumos: ' + JSON.stringify(err));
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Ocurrió un error al actualizar insumos');
-            });
     });
-
-
-
 });

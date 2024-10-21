@@ -2,7 +2,7 @@ package com.owlmanager.proyecto.Controller;
 
 
 import com.owlmanager.proyecto.Repository.AlmacenRepository;
-import com.owlmanager.proyecto.Repository.InsumoRepository;
+import com.owlmanager.proyecto.Repository.InsumosRepository;
 import com.owlmanager.proyecto.model.Almacen;
 import com.owlmanager.proyecto.model.Insumos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,9 @@ public class AlmacenController {
     private final AlmacenRepository almacenRepository;
 
     @Autowired
-    private final InsumoRepository insumoRepository;
+    private final InsumosRepository insumoRepository;
 
-    public AlmacenController(AlmacenRepository almacenRepository, InsumoRepository insumoRepository) {
+    public AlmacenController(AlmacenRepository almacenRepository, InsumosRepository insumoRepository) {
         this.almacenRepository = almacenRepository;
         this.insumoRepository = insumoRepository;
     }

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 
+import com.owlmanager.proyecto.Repository.InsumosRepository;
+import com.owlmanager.proyecto.exception.InvalidInputException;
 import com.owlmanager.proyecto.execption.ResourceNotFoundException;
 import com.owlmanager.proyecto.model.Almacen;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.owlmanager.proyecto.Repository.AlmacenRepository;
-import com.owlmanager.proyecto.Repository.EntradasRepository;
-import com.owlmanager.proyecto.Repository.InsumoRepository;
+import com.owlmanager.proyecto.Repository.RegistroEntradasAlmacenRepository;
+import com.owlmanager.proyecto.Repository.RegistroTransferenciaProyectoRepository;
 import com.owlmanager.proyecto.model.Insumos;
 import com.owlmanager.proyecto.model.RegistroEntradasAlmacen;
 
@@ -29,13 +31,14 @@ import com.owlmanager.proyecto.model.RegistroEntradasAlmacen;
 @RequestMapping("/api/registro-entradas-almacen")
 public class RegistroEntradaAlmacenController {
 
-    private final EntradasRepository registroEntradasAlmacenRepository;
-    private final InsumoRepository insumoRepository;
+    private final RegistroEntradasAlmacenRepository registroEntradasAlmacenRepository;
+    private final InsumosRepository insumoRepository;
     private final AlmacenRepository almacenRepository;
 
     @Autowired
-    public RegistroEntradaAlmacenController(EntradasRepository registroEntradasAlmacenRepository,
-            InsumoRepository insumoRepository,
+    public RegistroEntradaAlmacenController(
+            RegistroEntradasAlmacenRepository registroEntradasAlmacenRepository,
+            InsumosRepository insumoRepository,
             AlmacenRepository almacenRepository) {
         this.registroEntradasAlmacenRepository = registroEntradasAlmacenRepository;
         this.insumoRepository = insumoRepository;
@@ -58,20 +61,20 @@ public class RegistroEntradaAlmacenController {
     public ResponseEntity<String> guardarRegistroEntradas(@RequestBody RegistroEntradasAlmacen registroEntradasAlmacen) {
         // Validar que los campos necesarios no sean nulos o vacíos
         if (registroEntradasAlmacen.getInsumo() == null || registroEntradasAlmacen.getInsumo().getCodigo_insumo() == null) {
-            return ResponseEntity.badRequest().body("El código del insumo es obligatorio.");
+            throw new InvalidInputException("El código del insumo es obligatorio.");
         }
 
-        if (registroEntradasAlmacen.getEstante() == null || registroEntradasAlmacen.getEstante().getUbicacion()== 0) {
-            return ResponseEntity.badRequest().body("La ubicación del estante es obligatoria.");
+        if (registroEntradasAlmacen.getEstante() == null || registroEntradasAlmacen.getEstante().getUbicacion() == 0) {
+            throw new InvalidInputException("La ubicación del estante es obligatoria.");
         }
 
         // Verificar si el insumo existe
         Insumos insumo = insumoRepository.findById(registroEntradasAlmacen.getInsumo().getCodigo_insumo())
-                .orElseThrow(() -> new IllegalArgumentException("Insumo no encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Insumo no encontrado"));
 
         // Verificar si la ubicación existe
         Almacen estante = almacenRepository.findById(registroEntradasAlmacen.getEstante().getUbicacion())
-                .orElseThrow(() -> new IllegalArgumentException("Ubicación no encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Ubicación no encontrada"));
 
         // Asignar insumo y estante al registro
         registroEntradasAlmacen.setInsumo(insumo);
@@ -101,7 +104,7 @@ public class RegistroEntradaAlmacenController {
                 .orElseThrow(() -> new RuntimeException("Insumo no encontrado"));
 
         Almacen almacen = almacenRepository.findById(registroEntradasActualizado.getEstante().getUbicacion())
-                .orElseThrow(() -> new RuntimeException("Estante no encontrado"));
+                .orElseThrow(() -> new RuntimeException("Ubicación no encontrado"));
 
 
         registroExistente.setInsumo(insumo);
