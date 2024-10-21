@@ -1,119 +1,68 @@
 package com.owlmanager.proyecto.Controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.owlmanager.proyecto.Repository.UnidadesRepository;
 import com.owlmanager.proyecto.model.Unidades;
+import com.owlmanager.proyecto.model.Categoria;
+import com.owlmanager.proyecto.model.Insumos;
+import com.owlmanager.proyecto.Repository.CategoriasRepository;
+import com.owlmanager.proyecto.Repository.InsumosRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.owlmanager.proyecto.Repository.CategoriasRepository;
-import com.owlmanager.proyecto.Repository.InsumoRepository;
-import com.owlmanager.proyecto.model.Categoria;
-import com.owlmanager.proyecto.model.Insumos;
+import java.util.List;
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api/insumos")
 public class InsumoController {
 
     @Autowired
-    private final InsumoRepository insumoRepository;
+    private InsumosRepository insumosRepository;
 
-    @Autowired
-    private final CategoriasRepository categoriasRepository;
-    @Autowired
-    private UnidadesRepository unidadesRepository;
-
-    public InsumoController(InsumoRepository insumoRepository, CategoriasRepository categoriasRepository) {
-        this.insumoRepository = insumoRepository;
-        this.categoriasRepository = categoriasRepository;
-    }
-
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping
-    public List<Insumos> obtenerInsumos() {
-        return insumoRepository.findAll();
+    public List<Insumos> obtenerTodosLosInsumos() {
+        return insumosRepository.findAll();
     }
 
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
-    @GetMapping("/{codigo_insumo}")
-    public ResponseEntity<Insumos> obtenerInsumo(@PathVariable Long codigo_insumo) {
-        Optional<Insumos> opt = insumoRepository.findById(codigo_insumo);
-        return opt.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    @GetMapping("/{id}")
+    public ResponseEntity<Insumos> obtenerInsumoPorId(@PathVariable Long id) {
+        Insumos insumo = insumosRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Insumo no encontrado con ID: " + id));
+        return ResponseEntity.ok(insumo);
     }
 
-
-
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PostMapping
-    public ResponseEntity<Insumos> registrarInsumo(@RequestBody Insumos insumo) {
-        Categoria categoria = categoriasRepository.findById(insumo.getCategoria_insumo().getCodigo_categoria())
-                .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
-        Unidades unidades = unidadesRepository.findById(insumo.getUnidades_insumo().getCodigo_unidades())
-                .orElseThrow(() -> new RuntimeException("unidad no encontrada"));
-
-        // Asignar la categoría al insumo
-        insumo.setCategoria_insumo(categoria);
-        insumo.setUnidades_insumo(unidades);
-
-        // Guardar el insumo en la base de datos
-        Insumos savedRegistro = insumoRepository.save(insumo);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedRegistro);
+    public ResponseEntity<Insumos> crearInsumo(@RequestBody Insumos insumo) {
+        Insumos nuevoInsumo = insumosRepository.save(insumo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoInsumo);
     }
 
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
-    @PutMapping("/{codigo_insumo}")
-    public ResponseEntity<Insumos> actualizarInsumo(@PathVariable Long codigo_insumo, @RequestBody Insumos insumoActualizado) {
-        // Verificar si el insumo existe
-        Insumos insumoExistente = insumoRepository.findById(codigo_insumo)
-                .orElseThrow(() -> new RuntimeException("Insumo no encontrado"));
+    @PutMapping("/{id}")
+    public ResponseEntity<Insumos> actualizarInsumo(@PathVariable Long id, @RequestBody Insumos insumoActualizado) {
+        Insumos insumoExistente = insumosRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Insumo no encontrado con ID: " + id));
 
-
-        // Actualizar los campos
-        insumoExistente.setNumero_parte(insumoActualizado.getNumero_parte());
+        // Actualizamos los campos del insumo existente
         insumoExistente.setNombre(insumoActualizado.getNombre());
+        insumoExistente.setNumero_parte(insumoActualizado.getNumero_parte());
         insumoExistente.setProcedencia(insumoActualizado.getProcedencia());
+        insumoExistente.setCategoria_insumo(insumoActualizado.getCategoria_insumo());
+        insumoExistente.setUnidades_insumo(insumoActualizado.getUnidades_insumo());
 
-        // Actualizar la categoría
-        Categoria categoria = categoriasRepository.findById(insumoActualizado.getCategoria_insumo().getCodigo_categoria())
-                .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
-        insumoExistente.setCategoria_insumo(categoria);
-
-        Unidades unidades = unidadesRepository.findById(insumoActualizado.getUnidades_insumo().getCodigo_unidades())
-                .orElseThrow(() -> new RuntimeException("Unidad de medida no encontrada"));
-        insumoExistente.setUnidades_insumo(unidades);
-
-
-        // Guardar los cambios en la base de datos
-        Insumos insumoGuardado = insumoRepository.save(insumoExistente);
-        return ResponseEntity.ok(insumoGuardado);
+        Insumos insumoActualizadoSave = insumosRepository.save(insumoExistente);
+        return ResponseEntity.ok(insumoActualizadoSave);
     }
 
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
-    @DeleteMapping("/{codigo_insumo}")
-    public ResponseEntity<Void> eliminarInsumo(@PathVariable Long codigo_insumo) {
-        // Verificar si el insumo existe
-        Insumos insumoExistente = insumoRepository.findById(codigo_insumo)
-                .orElseThrow(() -> new RuntimeException("Insumo no encontrado"));
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarInsumo(@PathVariable Long id) {
+        Insumos insumo = insumosRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Insumo no encontrado con ID: " + id));
 
-        // Eliminar el insumo
-        insumoRepository.delete(insumoExistente);
+        insumosRepository.delete(insumo);
         return ResponseEntity.noContent().build();
     }
 }
-
-
-
-
-

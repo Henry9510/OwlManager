@@ -6,8 +6,6 @@ window.onload = function () {
 
 
 
-
-
 let listarEmpleado = async () => {
 
     const respuesta = await fetch('http://localhost:8080/api/empleado', {

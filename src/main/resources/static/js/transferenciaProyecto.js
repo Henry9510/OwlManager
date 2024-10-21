@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('materialForm');
+    const form = document.getElementById('formSalidas');
     const materialList = document.querySelector('#materialList tbody');
     const generateArrayButton = document.getElementById('generateArrayButton');
 
