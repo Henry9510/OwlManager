@@ -2,10 +2,15 @@ package com.owlmanager.proyecto.Controller;
 
 
 
+import com.owlmanager.proyecto.Repository.RegistroTransferenciaProyectoRepository;
+import com.owlmanager.proyecto.model.RegistroTransferenciaProyecto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-    @Controller
+@Controller
     public class mainController {
 
         // Página de inicio
@@ -108,6 +113,20 @@ import org.springframework.web.bind.annotation.GetMapping;
             return "lista-almacenaje"; // Debe corresponder a login.html
         }
 
+    @Autowired
+    private RegistroTransferenciaProyectoRepository transferenciaRepository;
+
+    @GetMapping("/templates/detalle-transferencia/{id}")
+    public String detalleTransferencia(@PathVariable("id") Long id, Model model) {
+        // Buscar la transferencia directamente desde el repositorio
+        RegistroTransferenciaProyecto transferencia = transferenciaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Transferencia no encontrada: " + id));
+
+        // Agregar los detalles de la transferencia al modelo
+        model.addAttribute("transferencia", transferencia);
+
+        return "detalle-transferencia"; // Retorna la vista detalle-transferencia.html
+    }
 
 
     }

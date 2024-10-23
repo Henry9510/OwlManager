@@ -5,8 +5,10 @@ import java.util.Optional;
 
 
 import com.owlmanager.proyecto.Repository.InsumosRepository;
-import com.owlmanager.proyecto.exception.InvalidInputException;
-import com.owlmanager.proyecto.execption.ResourceNotFoundException;
+
+import com.owlmanager.proyecto.exception.ResourceNotFoundException;
+
+import com.owlmanager.proyecto.exception.*;
 import com.owlmanager.proyecto.model.Almacen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.owlmanager.proyecto.Repository.AlmacenRepository;
 import com.owlmanager.proyecto.Repository.RegistroEntradasAlmacenRepository;
-import com.owlmanager.proyecto.Repository.RegistroTransferenciaProyectoRepository;
 import com.owlmanager.proyecto.model.Insumos;
 import com.owlmanager.proyecto.model.RegistroEntradasAlmacen;
 

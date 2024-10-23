@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="/css/form.css" rel="stylesheet">
+  <link href="/css/index.css" rel="stylesheet">
+  <title>Owl Manager Dashboard</title>
+</head>
+<script src="/js/CRUDProyecto.js"></script>
+<body>
+<header>
+  <nav class="header">
+    <div class="div-logo">
+      <img src="/img/buho.png" class="logoImg" alt="Logo de Owl Manager" style="width: 50px">
+      <a class="logotexto" href="/index">Owl Manager Dashboard</a>
+    </div>
+
+    <ul class="nav-list">
+      <li><a href="/index" aria-label="Ir a inicio">Inicio</a></li>
+
+      <li>
+        <a aria-label="Gestión Usuarios">Gestión Usuarios</a>
+        <ul class="submenu">
+          <li><a href="/templates/nuevo-empleado" aria-label="Agregar nuevo empleado">Nuevo</a></li>
+          <li><a href="/templates/lista-empleado" aria-label="Lista de empleados">Listado</a></li>
+          <li><a href="/templates/registro-horas" aria-label="Registro de horas">Registro de Tiempo</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
+        <ul class="submenu">
+          <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear producto</a></li>
+          <li><a href="/templates/lista-insumo" aria-label="Ver almacén">Almacén</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/templates/gestionProyectos" aria-label="Gestión de Proyectos">Gestión de Proyectos</a>
+        <ul class="submenu">
+          <li><a href="/templates/nuevo-proyecto" aria-label="Agregar nuevo proyecto">Nuevo</a></li>
+          <li><a href="/templates/recibirPedidos" aria-label="Recibir pedidos">Recibir Pedidos</a></li>
+          <li><a href="/templates/lista-proyectos" aria-label="Lista de proyectos">Lista Proyecto</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/templates/transferencias" aria-label="Gestión de Transferencias">Gestión de Transferencias</a>
+        <ul class="submenu">
+          <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a
+            almacén</a></li>
+          <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a
+            proyecto</a></li>
+          <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de
+            Transferencia</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/templates/reportes" aria-label="Reportes">Reportes</a>
+        <ul class="submenu">
+          <li><a href="#" aria-label="Ver avance en proyecto"><i class="fas fa-project-diagram"></i> Avance en
+            proyecto</a></li>
+          <li><a href="#" aria-label="Ver inventario de proyecto"><i class="fas fa-box"></i> Inventario de
+            proyecto</a></li>
+          <li><a href="#" aria-label="Ver insumos faltantes"><i class="fas fa-exclamation-triangle"></i>
+            Insumos Faltantes</a></li>
+        </ul>
+      </li>
+      <li><a href="/templates/login" aria-label="Cerrar sesión">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+<h2>Detalle de Transferencia</h2>
+
+<p>Fecha: <span th:text="${transferencia.fecha}"></span></p>
+<p>Proyecto: <span th:text="${transferencia.proyecto.descripcion_proyecto}"></span></p>
+
+<h3>Insumos Transferidos</h3>
+<table>
+  <thead>
+  <tr>
+    <th>Insumo</th>
+    <th>Cantidad</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="insumo : ${transferencia.insumos}">
+    <td th:text="${insumo.insumo.nombre}"></td>
+    <td th:text="${insumo.cantidad_salida}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<a href="/templates/lista-transferencia">Volver al listado</a>
+
+
+
+<script>
+  // Obtener el ID de la transferencia desde la URL
+  const params = new URLSearchParams(window.location.search);
+  const idTransferencia = params.get('id');
+
+  // Función para obtener los detalles de la transferencia
+  function obtenerDetalleTransferencia(id) {
+    fetch(`http://localhost:8080/api/transferencias/${id}`) // Llama al endpoint con el ID de la transferencia
+            .then(response => response.json())
+            .then(data => {
+              const tbody = document.querySelector('#InsumosTransferidosList tbody');
+              tbody.innerHTML = ''; // Limpiar contenido previo
+
+              // Iterar sobre los insumos transferidos y agregarlos a la tabla
+              data.insumos.forEach(insumoTransferido => {
+                const tr = document.createElement('tr');
+
+                const tdInsumo = document.createElement('td');
+                tdInsumo.textContent = insumoTransferido.insumo.nombre; // Suponiendo que tienes un campo 'nombre'
+
+                const tdCantidad = document.createElement('td');
+                tdCantidad.textContent = insumoTransferido.cantidad_salida;
+
+                tr.appendChild(tdInsumo);
+                tr.appendChild(tdCantidad);
+
+                tbody.appendChild(tr);
+              });
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+  }
+
+  // Ejecutar la función para obtener el detalle cuando la página cargue
+  document.addEventListener('DOMContentLoaded', () => {
+    if (idTransferencia) {
+      obtenerDetalleTransferencia(idTransferencia);
+    }
+  });
+</script>
+</body>
+</html>

@@ -6,8 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="/css/index.css" rel="stylesheet">
-    <link href="/css/form.css" rel="stylesheet">
     <title>Owl Manager Dashboard</title>
+    <style>
+        section {
+            padding: 40px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            outline: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            cursor: pointer;
+            width: 200px;
+            height: 40px;
+            margin-top: 10px;
+            align-self: center;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .formulario-transferencia {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .removeInsumoButton {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .removeInsumoButton:hover {
+            background-color: #d32f2f;
+        }
+
+        #addInsumoButton {
+            background-color: #2196F3;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,10 +85,8 @@
             <img src="/img/buho.png" class="logoImg" alt="Logo de Owl Manager" style="width: 50px">
             <a class="logotexto" href="/templates/index">Owl Manager Dashboard</a>
         </div>
-
         <ul class="nav-list">
             <li><a href="/templates/index" aria-label="Ir a inicio">Inicio</a></li>
-
             <li>
                 <a aria-label="Gestión Usuarios">Gestión Usuarios</a>
                 <ul class="submenu">
@@ -32,12 +98,10 @@
             <li>
                 <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
                 <ul class="submenu">
-
-                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear Producto</a></li>
-                    <li><a href="/templates/lista-insumo" aria-label="Ver productos">Lista de Productos</a></li>
-                    <li><a href="/templates/almacen" aria-label="Almacenar">Ubicar en Almacén</a></li>
-                    <li><a href="/templates/lista-almacenaje" aria-label="lista almacen">Alamcen</a></li>
-
+                    <li><a href="/templates/nuevo-producto" aria-label="Crear Producto">Crear Producto</a></li>
+                    <li><a href="/templates/lista-insumo" aria-label="Lista de Productos">Lista de Productos</a></li>
+                    <li><a href="/templates/almacen" aria-label="Ubicar en Almacén">Ubicar en Almacén</a></li>
+                    <li><a href="/templates/lista-almacenaje" aria-label="Lista de Almacén">Almacén</a></li>
                 </ul>
             </li>
             <li>
@@ -51,23 +115,9 @@
             <li>
                 <a href="/templates/transferencias" aria-label="Gestión de Transferencias">Gestión de Transferencias</a>
                 <ul class="submenu">
-                    <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a
-                        almacén</a></li>
-                    <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a
-                        proyecto</a></li>
-                    <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de
-                        Transferencia</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="/templates/reportes" aria-label="Reportes">Reportes</a>
-                <ul class="submenu">
-                    <li><a href="#" aria-label="Ver avance en proyecto"><i class="fas fa-project-diagram"></i> Avance en
-                        proyecto</a></li>
-                    <li><a href="#" aria-label="Ver inventario de proyecto"><i class="fas fa-box"></i> Inventario de
-                        proyecto</a></li>
-                    <li><a href="#" aria-label="Ver insumos faltantes"><i class="fas fa-exclamation-triangle"></i>
-                        Insumos Faltantes</a></li>
+                    <li><a href="/templates/transferir-almacen" aria-label="Transferir a Almacén">Transferir a Almacén</a></li>
+                    <li><a href="/templates/transferir-proyecto" aria-label="Transferir a Proyecto">Transferir a Proyecto</a></li>
+                    <li><a href="/templates/lista-transferencia" aria-label="Lista de Transferencias">Lista de Transferencia</a></li>
                 </ul>
             </li>
             <li><a href="/templates/login" aria-label="Cerrar sesión">Logout</a></li>
@@ -77,74 +127,46 @@
 
 <main>
     <section>
-
-        <form class="formulario" id="formSalidas">
-            <div class="info">
-                <div class="form-group">
-                    <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha" name="fecha" required><br>
-                </div>
-
-                <div class="form-group">
-                    <label for="Proyecto">Proyecto:</label>
-                    <input type="number" id="Proyecto" name="Proyecto" required><br>
-                </div>
-
-                <div class="form-group">
-                    <label for="codigo">Código de Insumo:</label>
-                    <input type="number" id="codigo" name="codigo" required><br>
-                </div>
-
-                <div class="form-group">
-                    <label for="nombre">Descripción:</label>
-                    <input type="text" id="nombre" name="nombre" required><br>
-                </div>
-
-                <div class="form-group">
-                    <label for="partNumber">Número de Parte:</label>
-                    <input type="text" id="partNumber" name="partNumber" required><br>
-                </div>
-
-                <div class="form-group">
-                    <label for="cantidad">Cantidad a enviar:</label>
-                    <input type="number" id="cantidad" name="cantidad" required><br>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit">Agregar</button>
-                </div>
+        <form class="formulario-transferencia" id="formSalidas">
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" required>
             </div>
+            <div class="form-group">
+                <label for="proyecto">Número de proyecto:</label>
+                <input type="number" id="proyecto" required>
+            </div>
+
+            <table id="materialList">
+                <thead>
+                <tr>
+                    <th>Código Insumo</th>
+                    <th>Descripción</th>
+                    <th>Número de Parte</th>
+                    <th>Cantidad enviada</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="insumo-container">
+                <tr class="insumo-row">
+                    <td><input type="number" name="codigo_insumo" required></td>
+                    <td><input type="text" name="descripcion" required></td>
+                    <td><input type="text" name="partNumber" required></td>
+                    <td><input type="number" name="cantidad_salida" required></td>
+                    <td><button type="button" class="removeInsumoButton">-</button></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <button type="button" id="addInsumoButton">Agregar Insumo</button>
+            <button type="submit" id="saveButton">Guardar</button>
         </form>
-
-
-        <h3>Listado de Materiales</h3>
-        <table id="materialList">
-            <thead>
-            <tr>
-
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Número de Parte</th>
-                <th>Cantidad</th>
-                <th>Acción</th>
-            </tr>
-            </thead>
-            <tbody id="tranfeProjectBody">
-
-            </tbody>
-        </table>
-        <button id="generateArrayButton">Generar Arreglo</button>
-
-
-        <div class="pedido">
-            <h3>Pedidos Registrados</h3>
-            <ul id="pedidosList">
-            </ul>
-        </div>
     </section>
 </main>
+
+<script src="/js/transferenciaProyecto.js">
+
+</script>
+
 </body>
-<script src="/js/transferenciaProyecto.js"></script>
-
-
 </html>

@@ -1,7 +1,4 @@
 package com.owlmanager.proyecto.exception;
-
-import com.owlmanager.proyecto.execption.CustomError;
-import com.owlmanager.proyecto.execption.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
