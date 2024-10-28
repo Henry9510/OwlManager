@@ -18,9 +18,6 @@ public class Almacen {
     @JoinColumn(name = "codigo_insumo")
     private Insumos codigo_insumo;
 
-
-    private int entrada;
-    private  int salida;
     private int status;
     private int stock;
 

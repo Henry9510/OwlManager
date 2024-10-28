@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Setter
 @Getter
 @Entity
@@ -23,7 +21,7 @@ public class Insumos {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "codigo_categoria", nullable = false)
-    private Categoria categoria_insumo;
+    private Categorias categoria_insumo;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "codigo_unidades", nullable = false)

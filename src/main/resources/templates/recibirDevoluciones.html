@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="/css/form.css" rel="stylesheet">
-    <link href="/css/index.css" rel="stylesheet">
-    <title>Owl Manager Dashboard</title>
+    <link rel="stylesheet" href="/css/style-index.css"> <!-- Tu archivo CSS personalizado -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="/img/favicon-32x32.png">
 </head>
+<script src="/js/devolucionesPendiente.js"></script>
 <body>
+
 <header>
     <nav class="header">
         <div class="div-logo">
@@ -50,18 +52,25 @@
             <li>
                 <a href="/templates/transferencias" aria-label="Gestión de Transferencias">Gestión de Transferencias</a>
                 <ul class="submenu">
-                    <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a almacén</a></li>
-                    <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a proyecto</a></li>
-                    <li><a href="/templates/lista-transferenciaAlmacen" aria-label="Lista de transferencias">Lista de Transferencia Almaen</a></li>
-                    <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de Transferencia Proyectos</a></li>
+                    <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a
+                        almacén</a></li>
+                    <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a
+                        proyecto</a></li>
+                    <li><a href="/templates/lista-transferenciaAlmacen" aria-label="Lista de transferencias">Lista de
+                        Transferencia Almaen</a></li>
+                    <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de
+                        Transferencia Proyectos</a></li>
                 </ul>
             </li>
             <li>
                 <a href="/templates/reportes" aria-label="Reportes">Reportes</a>
                 <ul class="submenu">
-                    <li><a href="#" aria-label="Ver avance en proyecto"><i class="fas fa-project-diagram"></i> Avance en proyecto</a></li>
-                    <li><a href="#" aria-label="Ver inventario de proyecto"><i class="fas fa-box"></i> Inventario de proyecto</a></li>
-                    <li><a href="#" aria-label="Ver insumos faltantes"><i class="fas fa-exclamation-triangle"></i> Insumos Faltantes</a></li>
+                    <li><a href="#" aria-label="Ver avance en proyecto"><i class="fas fa-project-diagram"></i> Avance en
+                        proyecto</a></li>
+                    <li><a href="#" aria-label="Ver inventario de proyecto"><i class="fas fa-box"></i> Inventario de
+                        proyecto</a></li>
+                    <li><a href="#" aria-label="Ver insumos faltantes"><i class="fas fa-exclamation-triangle"></i>
+                        Insumos Faltantes</a></li>
                 </ul>
             </li>
             <li><a href="/templates/login" aria-label="Cerrar sesión">Logout</a></li>
@@ -69,34 +78,22 @@
     </nav>
 </header>
 
+<h2>transferenica pendientes por recibir</h2>
 
-<section>
-    <div class="tranferenciaProyecto">
-        <h3>Listado de Transferencias</h3>
-        <form id="materialForm">
-            <label for="buscar">Buscar:</label>
-            <input type="text" id="buscar" name="busar"><br><br>
-        </form>
+<table id="Transferlist">
+    <thead>
+    <tr>
+        <th>Fecha</th>
+        <th>ID</th>
+        <th>Proyecto</th>
+        <th>Estado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Los insumos se agregarán aquí dinámicamente -->
+    </tbody>
+</table>
 
-        <h3>Listado de Transferencias</h3>
-        <table id="Transferlist">
-            <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>REQ</th>
-                <th>Proyecto</th>
-                <th>Usuario</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-</section>
 </body>
 
-<script src="/js/listarTransferencia.js"></script>
-
 </html>
-

@@ -7,9 +7,9 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@Table(name="estado")
+@Table(name="estados")
 @Entity
-public class Estado {
+public class Estados {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

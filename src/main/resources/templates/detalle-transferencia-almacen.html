@@ -72,7 +72,7 @@
 <h2>Detalle de Transferencia</h2>
 
 <p>Fecha: <span th:text="${transferencia.fecha}"></span></p>
-<p>Proyecto: <span th:text="${transferencia.proyecto.descripcion_proyecto}"></span></p>
+<p>ID: <span th:text="${transferencia.id_entrada}"></span></p>
 
 <h3>Insumos Transferidos</h3>
 <table>
@@ -84,17 +84,17 @@
   </thead>
   <tbody>
   <tr th:each="insumo : ${transferencia.insumos}">
-    <td th:text="${insumo.insumo.nombre}"></td>
-    <td th:text="${insumo.cantidad_salida}"></td>
+    <td th:text="${insumo.estante.codigo_insumo.nombre}"></td>
+    <td th:text="${insumo.cantidad_entrada}"></td> <!-- Asegúrate de que el campo sea correcto -->
   </tr>
   </tbody>
 </table>
 
-<a href="/templates/lista-transferencia">Volver al listado</a>
+<a href="/templates/lista-transferenciaAlmacen">Volver al listado</a>
 
 
 
-<script src="/js/detalleTransferencia.js">
+<script src="/js/detalleTransferenciaAlmacen.js">
 
 </script>
 </body>

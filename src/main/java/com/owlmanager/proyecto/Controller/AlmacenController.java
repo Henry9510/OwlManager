@@ -59,8 +59,6 @@ public class AlmacenController {
         // Actualizar campos
 
         almacenExistente.setUbicacion(almacenExistente.getUbicacion());
-        almacenExistente.setEntrada(almacenActualizado.getEntrada());
-        almacenExistente.setSalida(almacenActualizado.getSalida());
         almacenExistente.setStatus(almacenActualizado.getStatus());
         almacenExistente.setStock(almacenActualizado.getStock());
 

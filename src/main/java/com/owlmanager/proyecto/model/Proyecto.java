@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Setter
 @Getter
@@ -25,7 +24,7 @@ public class Proyecto {
 
     @ManyToOne
     @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
-    private Estado estado_proyecto;
+    private Estados estado_proyecto;
 
     @Override
     public String toString() {

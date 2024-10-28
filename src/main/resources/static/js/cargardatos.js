@@ -262,3 +262,4 @@ let registrarEmpleado = async () => {
 
 
 }
+

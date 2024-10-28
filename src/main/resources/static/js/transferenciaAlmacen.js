@@ -1,47 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
     const addInsumoButton = document.getElementById('addInsumoButton');
     const insumoContainer = document.getElementById('insumo-container');
-    const saveButton = document.getElementById('saveButton'); // Botón para enviar los datos
+    const saveButton = document.getElementById('saveButton');
 
-    // Agregar evento para el botón "Agregar Insumo"
+    let insumoCounter = 0;
+
     addInsumoButton.addEventListener('click', () => {
-        // Crear una nueva fila de insumo
         const newInsumoRow = document.createElement('tr');
         newInsumoRow.classList.add('insumo-row');
 
         newInsumoRow.innerHTML = `
             <td>
-                <input type="text" name="codigo_insumo" class="codigo_insumo" required>
+                <input type="number" id="codigo_insumo_${insumoCounter}" name="codigo_insumo" class="codigo_insumo" required>
             </td>
             <td>
-                <input type="text" name="ubicacion" readonly required>
+                <input type="number" id="ubicacion_${insumoCounter}" name="ubicacion" readonly required>
             </td>
             <td>
-                <input type="text" name="descripcion" readonly required>
+                <input type="text" id="descripcion_${insumoCounter}" readonly required>
             </td>
             <td>
-                <input type="text" name="partNumber" readonly required>
+                <input type="text" id="numero_parte_${insumoCounter}" readonly required>
             </td>
             <td>
-                <input type="number" name="cantidad_entrada" required>
+                <input type="number" id="cantidad_entrada_${insumoCounter}" name="cantidad_entrada" required>
             </td>
             <td>
-                <button type="button" class="removeInsumoButton">-</button>
+                <button type="button" class="removeInsumoButton btn btn-danger">-</button>
             </td>
         `;
 
-        // Agregar la nueva fila a la tabla
         insumoContainer.appendChild(newInsumoRow);
+        insumoCounter++;
 
-        // Seleccionar el campo de código en la nueva fila
-        const codigoInput = newInsumoRow.querySelector('.codigo_insumo');
+        const codigoInput = newInsumoRow.querySelector(`#codigo_insumo_${insumoCounter - 1}`);
 
-        // Evento para llenar automáticamente los campos al ingresar el código
         codigoInput.addEventListener('input', () => {
             const codigo = codigoInput.value;
 
             if (codigo) {
-                fetch(`http://localhost:8080/api/almacen/insumo/${codigo}`)
+                console.log(`Buscando insumo con código: ${codigo}`);
+                fetchWithTimeout(`http://localhost:8080/api/almacen/insumo/${codigo}`)
                     .then(response => {
                         if (response.ok) {
                             return response.json();
@@ -52,9 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(data => {
                         if (data.length > 0) {
                             const almacenData = data[0];
-                            newInsumoRow.querySelector('input[name="ubicacion"]').value = almacenData.ubicacion;
-                            newInsumoRow.querySelector('input[name="descripcion"]').value = almacenData.codigo_insumo.nombre;
-                            newInsumoRow.querySelector('input[name="partNumber"]').value = almacenData.codigo_insumo.numero_parte;
+                            newInsumoRow.querySelector(`#ubicacion_${insumoCounter - 1}`).value = almacenData.ubicacion;
+                            newInsumoRow.querySelector(`#descripcion_${insumoCounter - 1}`).value = almacenData.codigo_insumo.nombre;
+                            newInsumoRow.querySelector(`#numero_parte_${insumoCounter - 1}`).value = almacenData.codigo_insumo.numero_parte;
+                            console.log(`Datos cargados: ${JSON.stringify(almacenData)}`);
                         } else {
                             limpiarCampos(newInsumoRow);
                         }
@@ -69,87 +69,125 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         function limpiarCampos(row) {
-            row.querySelector('input[name="ubicacion"]').value = '';
-            row.querySelector('input[name="descripcion"]').value = '';
-            row.querySelector('input[name="partNumber"]').value = '';
+            row.querySelector(`#ubicacion_${insumoCounter - 1}`).value = '';
+            row.querySelector(`#descripcion_${insumoCounter - 1}`).value = '';
+            row.querySelector(`#numero_parte_${insumoCounter - 1}`).value = '';
+            console.log('Campos limpiados');
         }
     });
 
-    // Delegar el evento de eliminación para las filas
     insumoContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('removeInsumoButton')) {
+            console.log('Removiendo insumo de la fila');
             event.target.closest('tr').remove();
         }
     });
 
-    // Evento para el botón de guardar
-    saveButton.addEventListener('click', () => {
+    saveButton.addEventListener('click', async () => {
         const rows = insumoContainer.querySelectorAll('.insumo-row');
         const fechaRegistro = document.getElementById("fecha").value;
+        const codigo_proyecto = document.getElementById("codigo_proyecto").value;
 
         if (!fechaRegistro) {
             alert('Debe ingresar la fecha de registro');
+            console.error('Fecha de registro no ingresada');
             return;
         }
 
+        let insumos = [];
         let hasError = false;
 
-        rows.forEach(row => {
-            const codigo = row.querySelector('input[name="codigo_insumo"]').value;
-            const cantidadEntrada = row.querySelector('input[name="cantidad_entrada"]').value;
-            const ubicacion = row.querySelector('input[name="ubicacion"]').value;
+        for (const row of rows) {
+            const codigoInput = row.querySelector('input[name="codigo_insumo"]');
+            const cantidadEntradaInput = row.querySelector('input[name="cantidad_entrada"]');
+            const ubicacionInput = row.querySelector('input[name="ubicacion"]');
 
-            if (!codigo || !cantidadEntrada || !ubicacion) {
+            if (!codigoInput.value || !cantidadEntradaInput.value || !ubicacionInput.value) {
+                console.error("Falta uno o más campos requeridos en la fila");
                 hasError = true;
-                alert('Debe completar todos los campos antes de guardar');
-                return;
+                break;
             }
 
-            const registroEntradasAlmacen = {
-                cantidad_entrada: parseInt(cantidadEntrada),
-                fecha: fechaRegistro,
-                insumo: {
-                    codigo_insumo: parseInt(codigo),
-                },
+            const insumoTransferido = {
                 estante: {
-                    ubicacion: ubicacion, // Usar el valor como texto ya que ubicaciones pueden no ser numéricas
+                    ubicacion: parseInt(ubicacionInput.value),
+                    codigo_insumo: {
+                        codigo_insumo: parseInt(codigoInput.value),
+                    }
                 },
-                entrada: 0,
-                salida: 0,
-                status: 0,
-                stock: 0
+                cantidad_entrada: parseInt(cantidadEntradaInput.value)
             };
 
-            console.log('Datos a enviar:', JSON.stringify(registroEntradasAlmacen, null, 2));
+            insumos.push(insumoTransferido);
+            console.log(`Insumo agregado: ${JSON.stringify(insumoTransferido)}`);
 
-            // Enviar datos al backend para cada fila
-            fetch('http://localhost:8080/api/registro-entradas-almacen', {
+            if (hasError) {
+                return;
+            }
+        }
+
+        const registroTransferencia = {
+            fecha: fechaRegistro,
+            estado: "PENDING",
+            proyecto: {
+            codigo_proyecto: codigo_proyecto,
+            },
+            insumos: insumos
+        };
+
+        console.log('Datos a enviar:', JSON.stringify(registroTransferencia, null, 2));
+
+        try {
+            console.log('Enviando datos al backend...');
+            const response = await fetchWithTimeout('http://localhost:8080/api/transferencia-almacen', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(registroEntradasAlmacen), // Envía el objeto de la fila
-            })
-                .then(response => {
-                    if (response.ok) {
-                        alert('Insumo actualizado exitosamente');
-                    } else {
-                        return response.json().then(err => {
-                            throw new Error('Error al actualizar insumo: ' + JSON.stringify(err));
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Ocurrió un error al actualizar el insumo');
-                });
-        });
+                body: JSON.stringify(registroTransferencia),
+            });
 
-        if (hasError) {
-            return;
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error('Error al guardar la transferencia: ' + JSON.stringify(error));
+            }
+
+            const data = await response.json();
+            console.log('Transferencia guardada:', data);
+
+            alert('Transferencia guardada exitosamente');
+            insumoContainer.innerHTML = '';
+            console.log('Formulario limpiado tras envío exitoso');
+
+        } catch (error) {
+            console.error('Error en la transferencia:', error);
+            alert('Error: ' + error.message);
         }
-
-        // Limpiar el formulario después de guardar
-        insumoContainer.innerHTML = '';
     });
+
+    // Función para hacer fetch con timeout
+    function fetchWithTimeout(url, options = {}) {
+        const controller = new AbortController();
+        const { signal } = controller;
+
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // Timeout de 5 segundos
+
+        return fetch(url, { ...options, signal })
+            .then(response => {
+                clearTimeout(timeoutId); // Limpiar el timeout si la solicitud se completa
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response;
+            })
+            .catch(error => {
+                clearTimeout(timeoutId); // Limpiar el timeout si hubo un error
+                if (error.name === 'AbortError') {
+                    console.error('La solicitud fue abortada debido a un timeout.');
+                } else {
+                    console.error('Error en la solicitud:', error);
+                }
+                throw error; // Propagar el error
+            });
+    }
 });

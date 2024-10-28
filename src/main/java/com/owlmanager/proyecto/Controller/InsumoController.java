@@ -1,10 +1,6 @@
 package com.owlmanager.proyecto.Controller;
 
-import com.owlmanager.proyecto.Repository.UnidadesRepository;
-import com.owlmanager.proyecto.model.Unidades;
-import com.owlmanager.proyecto.model.Categoria;
 import com.owlmanager.proyecto.model.Insumos;
-import com.owlmanager.proyecto.Repository.CategoriasRepository;
 import com.owlmanager.proyecto.Repository.InsumosRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController

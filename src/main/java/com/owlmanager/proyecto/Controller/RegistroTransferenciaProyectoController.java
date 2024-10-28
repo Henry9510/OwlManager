@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/transferencias")
+@RequestMapping("/api/transferencia-proyecto")
 public class RegistroTransferenciaProyectoController {
 
     private final RegistroTransferenciaProyectoRepository transferenciaRepository;
@@ -89,4 +89,6 @@ public class RegistroTransferenciaProyectoController {
         transferenciaRepository.delete(transferenciaExistente);
         return ResponseEntity.noContent().build();
     }
+
+
 }

@@ -72,10 +72,7 @@ const registrarUbicacion = async () => {
             "codigo_insumo": insumoBuscadoCodigo2,
             "numero_parte": document.getElementById('numero_parte').value.trim()
         },
-        "entrada": 0, // Puedes ajustar este valor si es necesario
-        "salida": 0,
-        "status": 0,
-        "stock": 0 // Puedes ajustar este valor si es necesario
+        "stock": document.getElementById('cantidad-entrada').value,
     };
 
     console.log("Creando nuevo registro en almacén:", camposAlmacen);

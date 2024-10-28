@@ -3,54 +3,212 @@
 
 <head>
  <meta charset="UTF-8">
- <title>Home Page</title>
+ <title>Presentación del Dashboard Empresarial</title>
  <link rel="stylesheet" href="/css/home.css">
  <link rel="icon" href="/img/favicon-32x32.png">
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+   background-color: #f4f4f4;
+   color: #333;
+  }
+
+  .main-container {
+   text-align: center;
+   padding: 40px 20px;
+  }
+
+  header {
+   background: #0044cc;
+   color: white;
+   padding: 15px 0;
+  }
+
+  .container {
+   max-width: 1200px;
+   margin: 0 auto;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 20px;
+  }
+
+  header .logo {
+   font-size: 28px;
+   font-weight: bold;
+  }
+
+  header ul {
+   list-style-type: none;
+   padding: 0;
+   margin: 0;
+   display: flex;
+  }
+
+  header ul li {
+   margin: 0 15px;
+  }
+
+  header ul li a {
+   color: white;
+   text-decoration: none;
+   font-weight: bold;
+   transition: color 0.3s;
+  }
+
+  header ul li a:hover {
+   color: #ffd700;
+  }
+
+  .landing-page {
+   padding: 50px 0;
+  }
+
+  .content {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+  }
+
+  .info {
+   margin-bottom: 20px;
+  }
+
+  .info h1 {
+   font-size: 36px;
+   margin-bottom: 10px;
+  }
+
+  .info p {
+   font-size: 18px;
+   max-width: 600px;
+   margin: 0 auto;
+  }
+
+  .btn-primary {
+   background-color: #28a745;
+   color: white;
+   padding: 12px 25px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 18px;
+   margin-top: 20px;
+   transition: background-color 0.3s;
+  }
+
+  .btn-primary:hover {
+   background-color: #218838;
+  }
+
+  .image {
+   margin-top: 30px;
+  }
+
+  .main-image {
+   max-width: 80%;
+   height: auto;
+   border-radius: 10px;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .features {
+   display: flex;
+   justify-content: space-around;
+   margin-top: 60px;
+   flex-wrap: wrap;
+  }
+
+  .feature {
+   background: white;
+   padding: 30px;
+   border-radius: 10px;
+   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+   width: 30%;
+   margin: 10px;
+   transition: transform 0.3s;
+  }
+
+  .feature:hover {
+   transform: translateY(-5px);
+  }
+
+  .feature h3 {
+   color: #0044cc;
+   font-size: 22px;
+   margin-bottom: 10px;
+  }
+
+  @media (max-width: 768px) {
+   .features {
+    flex-direction: column;
+    align-items: center;
+   }
+
+   .feature {
+    width: 80%;
+    margin-bottom: 20px;
+   }
+  }
+ </style>
 </head>
+
 <body>
+<header>
+ <div class="container">
+  <a href="#" class="logo">Tu <b>Dashboard Empresarial</b></a>
+  <ul class="links">
+   <li><a href="#">Inicio</a></li>
+   <li><a href="#">Características</a></li>
+   <li><a href="#">Precios</a></li>
+   <li><a href="#">Contactar</a></li>
+   <li><a href="/auth/login">Iniciar Sesión</a></li>
+  </ul>
+ </div>
+</header>
+
 <div class="main-container">
- <div class="blur-circle1">
-
- </div>
- <div class="blur-circle2">
-
- </div>
- <!-- Start Landing Page -->
  <div class="landing-page">
-  <header>
-   <div class="container">
-    <a href="#" class="logo">Your <b>Website</b></a>
-    <ul class="links">
-     <li>Home</li>
-     <li>About Us</li>
-     <li>Work</li>
-     <li>Info</li>
-     <li>Login</li>
-    </ul>
-   </div>
-  </header>
   <div class="content">
-   <div class="container">
-    <div class="info">
-     <h1>Looking For Inspiration</h1>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus odit nihil ullam nesciunt quidem iste, Repellendus odit nihil</p>
-     <button id="loginButton">Iniciar Sesión</button>
-    </div>
-    <div class="image">
-     <img class="main-image" src="https://cdni.iconscout.com/illustration/premium/thumb/businessman-working-using-vr-tech-3840669-3202986.png?f=webp">
-    </div>
+   <div class="info">
+    <h1>Potencia tu Negocio con Nuestro Dashboard</h1>
+    <p>Gestiona tus proyectos, monitorea el rendimiento y optimiza tus recursos de manera eficiente con
+     nuestra herramienta empresarial.</p>
+    <button id="exploreButton" class="btn-primary">Explorar Dashboard</button>
+   </div>
+   <div class="image">
+    <img class="main-image"
+         src="https://cdni.iconscout.com/illustration/premium/thumb/businessman-working-using-vr-tech-3840669-3202986.png?f=webp"
+         alt="Dashboard Empresarial">
    </div>
   </div>
  </div>
- <!-- End Landing Page -->
+
+ <div class="features">
+  <div class="feature">
+   <h3>Características Clave</h3>
+   <p>Accede a reportes personalizados y visualiza datos en tiempo real.</p>
+  </div>
+  <div class="feature">
+   <h3>Fácil de Usar</h3>
+   <p>Interfaz intuitiva que simplifica la gestión de tu negocio.</p>
+  </div>
+  <div class="feature">
+   <h3>Soporte Continuo</h3>
+   <p>Recibe asistencia y actualizaciones regulares para mejorar tu experiencia.</p>
+  </div>
+ </div>
 </div>
 
-</body>
-
 <script>
- document.getElementById("loginButton").addEventListener("click", function() {
-  window.location.href = "/auth/login"; // Cambia esto por la ruta a tu página de login
+ document.getElementById("exploreButton").addEventListener("click", function () {
+  window.location.href = "/dashboard"; // Cambia esto por la ruta a tu dashboard
  });
 </script>
+
+</body>
 
 </html>
