@@ -1,6 +1,7 @@
 package com.owlmanager.proyecto.Controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.owlmanager.proyecto.Repository.EstadoRepository;
@@ -86,6 +87,31 @@ public class ProyectoController {
         // Retornar el proyecto actualizado con estado HTTP 200 OK
         return ResponseEntity.ok(updatedProyecto);
     }
+
+    @PutMapping("/api/proyecto/{id}/incrementarHoras")
+    public ResponseEntity<Proyecto> incrementarHorasProyecto(@PathVariable Long id, @RequestBody Map<String, Integer> horasActualizadas) {
+        // Verifica si existe el proyecto con el ID dado
+        if (!proyectoRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Recuperar el proyecto existente
+        Proyecto existingProyecto = proyectoRepository.findById(id).orElse(null);
+        if (existingProyecto == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Incrementar las horas reales
+        int horasAIncrementar = horasActualizadas.get("horas_reales"); // Se espera que el JSON tenga esta clave
+        existingProyecto.setHoras_reales(existingProyecto.getHoras_reales() + horasAIncrementar);
+
+        // Guardar el proyecto actualizado
+        Proyecto updatedProyecto = proyectoRepository.save(existingProyecto);
+
+        // Retornar el proyecto actualizado con estado HTTP 200 OK
+        return ResponseEntity.ok(updatedProyecto);
+    }
+
 
     // Eliminar un proyecto
     @DeleteMapping("/api/proyecto/{id}")

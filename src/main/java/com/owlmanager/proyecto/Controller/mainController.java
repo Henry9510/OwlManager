@@ -169,6 +169,14 @@ public class mainController {
         return "recibirDevoluciones";
     }
 
+    @GetMapping("/templates/lista-registro-horas")
+    public String lista_registro_horas() {
+        return "lista-registro-horas";
+    }
+    @GetMapping("/templates/reabastecerAlmacen")
+    public String reabastecerAlmacen() {
+        return "reabastecerAlmacen";
+    }
 
 }
 

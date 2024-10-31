@@ -72,6 +72,7 @@ public class RegistroTransferenciaAlmacenController {
         // Actualizar los campos de la entrada existente con los nuevos datos
         entradaExistente.setFecha(detallesEntrada.getFecha());
         entradaExistente.setInsumos(detallesEntrada.getInsumos());
+        entradaExistente.setEstado(detallesEntrada.getEstado());
 
         // Guardar la entrada actualizada
         RegistroTransferenciaAlmacen entradaActualizada = registroEntradasAlmacenRepository.save(entradaExistente);

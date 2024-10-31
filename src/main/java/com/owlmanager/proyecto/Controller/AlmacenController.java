@@ -53,24 +53,26 @@ public class AlmacenController {
 
     @PutMapping("/{ubicacion}")
     public ResponseEntity<Almacen> actualizarAlmacen(@PathVariable long ubicacion, @RequestBody Almacen almacenActualizado) {
+        // Verificar que el almacén existe
         Almacen almacenExistente = almacenRepository.findById(ubicacion)
                 .orElseThrow(() -> new RuntimeException("Almacen no encontrado"));
 
-        // Actualizar campos
-
-        almacenExistente.setUbicacion(almacenExistente.getUbicacion());
+        // Actualizar campos, sin cambiar la ubicación
         almacenExistente.setStatus(almacenActualizado.getStatus());
         almacenExistente.setStock(almacenActualizado.getStock());
-
 
         // Actualizar insumo
         Insumos insumo = insumoRepository.findById(almacenActualizado.getCodigo_insumo().getCodigo_insumo())
                 .orElseThrow(() -> new RuntimeException("Insumo no encontrado"));
         almacenExistente.setCodigo_insumo(insumo);
 
+        // Guardar cambios
         Almacen almacenGuardado = almacenRepository.save(almacenExistente);
+
+        // Devolver la respuesta con el objeto actualizado
         return ResponseEntity.ok(almacenGuardado);
     }
+
 
     @DeleteMapping("/{ubicacion}")
     public ResponseEntity<Void> eliminarAlmacen(@PathVariable long ubicacion) {

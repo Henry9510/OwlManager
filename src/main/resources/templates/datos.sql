@@ -64,3 +64,27 @@ VALUES (1, 'Tornillo', 'A123', 'N/A', 1, 3),
        (8, 'Panel Solar', 'H234', 'China', 5, 6),
        (9, 'Tubos de PVC', 'I567', 'N/A', 3, 4),
        (10, 'Martillo Eléctrico', 'J890', 'Alemania', 2, 1);
+
+
+INSERT INTO empleados (cedula, apellido, cargo, celular, direccion, edad, email, fecha_ingreso, nombre,
+                       segundo_apellido, segundo_nombre, sexo, telefono)
+VALUES (1012345678, 'Gómez', 'Analista', '3001234567', 'Calle 10 #20-30', 28, 'j.gomez@example.com', '2023-05-10',
+        'Juan', 'López', 'Carlos', 'M', '601234567'),
+       (1023456789, 'Rodríguez', 'Supervisor', '3012345678', 'Carrera 15 #10-20', 35, 'm.rodriguez@example.com',
+        '2022-08-15', 'María', 'Martínez', 'Elena', 'F', '602345678'),
+       (1034567890, 'Martínez', 'Desarrollador', '3023456789', 'Avenida 5 #15-40', 30, 'p.martinez@example.com',
+        '2021-07-25', 'Pedro', 'González', 'Luis', 'M', '603456789'),
+       (1045678901, 'Pérez', 'Gerente', '3034567890', 'Calle 8 #6-50', 45, 'a.perez@example.com', '2020-01-20', 'Ana',
+        'Ramírez', 'María', 'F', '604567890'),
+       (1056789012, 'García', 'Ingeniero', '3045678901', 'Carrera 12 #9-15', 29, 'd.garcia@example.com', '2023-03-12',
+        'Daniel', 'Ruiz', 'Fernando', 'M', '605678901'),
+       (1067890123, 'López', 'Técnico', '3056789012', 'Avenida 7 #2-80', 32, 'c.lopez@example.com', '2019-09-30',
+        'Carlos', 'Ramírez', 'Eduardo', 'M', '606789012'),
+       (1078901234, 'Moreno', 'Consultor', '3067890123', 'Calle 14 #4-50', 40, 'l.moreno@example.com', '2021-11-05',
+        'Laura', 'Gómez', 'Isabel', 'F', '607890123'),
+       (1089012345, 'Jiménez', 'Administrador', '3078901234', 'Carrera 5 #18-70', 27, 's.jimenez@example.com',
+        '2022-12-20', 'Sofía', 'Hernández', 'Paula', 'F', '608901234'),
+       (1090123456, 'Torres', 'Coordinador', '3089012345', 'Avenida 11 #3-60', 31, 'e.torres@example.com', '2020-06-18',
+        'Esteban', 'Morales', 'Alberto', 'M', '609012345'),
+       (1101234567, 'Hernández', 'Analista', '3090123456', 'Calle 9 #17-35', 26, 'g.hernandez@example.com',
+        '2023-04-07', 'Gabriela', 'Vargas', 'Andrea', 'F', '610123456');

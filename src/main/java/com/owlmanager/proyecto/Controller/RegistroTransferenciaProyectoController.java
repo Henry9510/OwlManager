@@ -68,6 +68,7 @@ public class RegistroTransferenciaProyectoController {
         // Actualizar campos de la transferencia
         transferenciaExistente.setFecha(transferenciaActualizada.getFecha());
         transferenciaExistente.setProyecto(transferenciaActualizada.getProyecto());
+        transferenciaExistente.setEstado(transferenciaActualizada.getEstado());
 
         // Validar y actualizar insumos
         for (InsumoTransferido insumoTransferido : transferenciaActualizada.getInsumos()) {

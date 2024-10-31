@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Crear el objeto de transferencia que sigue la estructura del JSON
         const registroTransferencia = {
             fecha: fechaRegistro,
+            estado: "PENDING",
             proyecto: {
                 codigo_proyecto: parseInt(codigoProyecto), // Código del proyecto
             },

@@ -1,27 +1,28 @@
 async function listarTransferencias() {
     try {
         const response = await fetch('http://localhost:8080/api/transferencia-almacen');
+
         if (!response.ok) {
-            throw new Error('La respuesta de la red no fue correcta: ' + response.statusText);
+            throw new Error(`Error en la respuesta de la red: ${response.statusText}`);
         }
 
         const data = await response.json();
-        console.log('Datos de transferencias recibidos:', data);
+        console.log('Transferencias obtenidas:', data);
 
-        // Filtrar las transferencias con estado "pending"
         const transferenciasPending = data.filter(transferencia => transferencia.estado === 'PENDING');
 
         const tbody = document.querySelector('#Transferlist tbody');
         if (!tbody) {
-            console.error('El tbody no se encontró en el DOM.');
-            return; // Salir si el tbody no existe
+            console.error('No se encontró el tbody en el DOM.');
+            return;
         }
 
-        tbody.innerHTML = ''; // Limpiar contenido previo en la tabla
+        tbody.innerHTML = ''; // Limpiar contenido previo
 
         transferenciasPending.forEach(transferencia => {
             const tr = document.createElement('tr');
 
+            // Crear celdas para cada campo
             const tdFecha = document.createElement('td');
             tdFecha.textContent = transferencia.fecha;
 
@@ -32,55 +33,68 @@ async function listarTransferencias() {
             tdREQ.textContent = transferencia.id_entrada;
 
             const tdProyecto = document.createElement('td');
-            tdProyecto.textContent = transferencia.proyecto.descripcion_proyecto;
+            tdProyecto.textContent = transferencia.proyecto?.descripcion_proyecto || 'N/A';
 
             const tdUsuario = document.createElement('td');
-            tdUsuario.textContent = transferencia.usuario ? transferencia.usuario.nombre : 'N/A';
+            tdUsuario.textContent = transferencia.usuario?.nombre || 'N/A';
 
+            // Crear botones de acción
             const tdAcciones = document.createElement('td');
+            const recibirBtn = document.createElement('button');
+            recibirBtn.textContent = 'RECIBIR';
+            recibirBtn.classList.add('btn', 'btn-primary');
+
             const revisarBtn = document.createElement('button');
-            revisarBtn.textContent = 'RECIBIR';
+            revisarBtn.textContent = 'REVISAR';
+            revisarBtn.classList.add('btn', 'btn-secondary');
 
-            revisarBtn.addEventListener('click', async () => {
-                const registroTransferencia = {
-                    fecha: transferencia.fecha, // Asegúrate de que esto esté correcto
-                    estado: "RECIIDA",
-                    proyecto: {
-                        codigo_proyecto: transferencia.proyecto.codigo_proyecto, // Asegúrate de que esto esté definido
-                    },
-                    insumos: transferencia.insumos || [] // Asegúrate de que esto esté definido
-                };
+            // Redireccionar al detalle de la transferencia al hacer clic en "REVISAR"
+            revisarBtn.addEventListener('click', () => {
+                window.location.href = `detalle-transferencia-almacen/${transferencia.id_entrada}`;
+            });
 
-                console.log('Datos a enviar:', JSON.stringify(registroTransferencia, null, 2));
-
+            // Lógica para recibir la transferencia
+            recibirBtn.addEventListener('click', async () => {
                 try {
-                    console.log('Enviando datos al backend...');
-                    const response = await fetch(`http://localhost:8080/api/transferencia-almacen/${transferencia.id_transferencia}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
+                    const registroTransferencia = {
+                        fecha: transferencia.fecha,
+                        estado: "RECIBIDA",
+                        proyecto: {
+                            codigo_proyecto: transferencia.proyecto.codigo_proyecto,
                         },
+                        insumos: transferencia.insumos || []
+                    };
+
+                    console.log('Enviando datos para actualizar transferencia:', JSON.stringify(registroTransferencia, null, 2));
+
+                    const response = await fetch(`http://localhost:8080/api/transferencia-almacen/${transferencia.id_entrada}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(registroTransferencia),
                     });
 
                     if (!response.ok) {
-                        const error = await response.json();
-                        throw new Error('Error al guardar la transferencia: ' + JSON.stringify(error));
+                        const errorData = await response.json();
+                        throw new Error(`Error al actualizar transferencia: ${JSON.stringify(errorData)}`);
                     }
 
-                    const result = await response.json();
-                    console.log('Transferencia guardada:', result);
-                    alert('Transferencia guardada exitosamente');
+                    console.log('Transferencia actualizada correctamente');
+                    alert('Transferencia marcada como recibida');
 
-                    // Aquí podrías actualizar la interfaz o eliminar la fila de la tabla si es necesario
-                    tr.remove(); // Remover la fila de la tabla
+                    // Remover la fila de la tabla después de la actualización
+                    tr.remove();
+
                 } catch (error) {
-                    console.error('Error al enviar datos:', error);
-                    alert('Ocurrió un error al guardar la transferencia: ' + error.message);
+                    console.error('Error al recibir transferencia:', error);
+                    alert(`Error al procesar la transferencia: ${error.message}`);
                 }
             });
 
+            // Agregar botones a la celda de acciones
+            tdAcciones.appendChild(recibirBtn);
             tdAcciones.appendChild(revisarBtn);
+
+            // Agregar celdas a la fila
             tr.appendChild(tdFecha);
             tr.appendChild(tdREQ);
             tr.appendChild(tdProyecto);
@@ -88,10 +102,12 @@ async function listarTransferencias() {
             tr.appendChild(tdUsuario);
             tr.appendChild(tdAcciones);
 
+            // Agregar la fila a la tabla
             tbody.appendChild(tr);
         });
     } catch (error) {
         console.error('Error al listar transferencias:', error);
+        alert(`Error al cargar transferencias: ${error.message}`);
     }
 }
 

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="/css/form.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+    <title>Owl Manager Dashboard</title>
+
+</head>
+
+<body>
+<style>
+    .formulario-reabastecimiento {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+</style>
+<header>
+    <nav class="header">
+        <div class="div-logo">
+            <img src="/img/buho.png" class="logoImg" alt="Logo de Owl Manager" style="width: 50px">
+            <a class="logotexto" href="/templates/index">Owl Manager Dashboard</a>
+        </div>
+
+        <ul class="nav-list">
+            <li><a href="/templates/index" aria-label="Ir a inicio">Inicio</a></li>
+
+            <li>
+                <a aria-label="Gestión Usuarios">Gestión Usuarios</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-empleado" aria-label="Agregar nuevo empleado">Nuevo</a></li>
+                    <li><a href="/templates/lista-empleado" aria-label="Lista de empleados">Listado</a></li>
+                    <li><a href="/templates/registro-horas" aria-label="Registro de horas">Registro de Tiempo</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear producto</a></li>
+                    <li><a href="/templates/lista-insumo" aria-label="Ver almacén">Almacén</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/gestionProyectos" aria-label="Gestión de Proyectos">Gestión de Proyectos</a>
+                <ul class="submenu">
+                    <li><a href="/templates/nuevo-proyecto" aria-label="Agregar nuevo proyecto">Nuevo</a></li>
+                    <li><a href="/templates/recibirPedidos" aria-label="Recibir pedidos">Recibir Pedidos</a></li>
+                    <li><a href="/templates/lista-proyectos" aria-label="Lista de proyectos">Lista Proyecto</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/transferencias" aria-label="Gestión de Transferencias">Gestión de Transferencias</a>
+                <ul class="submenu">
+                    <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a
+                        almacén</a></li>
+                    <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a
+                        proyecto</a></li>
+                    <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de
+                        Transferencia</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/templates/reportes" aria-label="Reportes">Reportes</a>
+                <ul class="submenu">
+                    <li><a href="#" aria-label="Ver avance en proyecto"><i class="fas fa-project-diagram"></i> Avance en
+                        proyecto</a></li>
+                    <li><a href="#" aria-label="Ver inventario de proyecto"><i class="fas fa-box"></i> Inventario de
+                        proyecto</a></li>
+                    <li><a href="#" aria-label="Ver insumos faltantes"><i class="fas fa-exclamation-triangle"></i>
+                        Insumos Faltantes</a></li>
+                </ul>
+            </li>
+            <li><a href="/templates/login" aria-label="Cerrar sesión">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<main>
+
+    <section>
+        <form class="formulario-reabastecimiento" id="formReabastecer">
+            <h2>Reabastecimiento de Almacén</h2>
+
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" required>
+            </div>
+
+            <table id="materialList">
+                <thead>
+                <tr>
+
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Número de Parte</th>
+                    <th>Estante</th>
+                    <th>Stock Actual</th>
+                    <th>Cantidad a Reabastecer</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="insumo-container">
+                <!-- Aquí se agregarán los insumos dinámicamente -->
+                </tbody>
+            </table>
+
+            <div class="button-container">
+                <button type="button" id="addInsumoButton" class="btn">Agregar Insumo</button>
+                <button type="submit" id="saveButton" class="btn">Guardar</button>
+            </div>
+        </form>
+    </section>
+
+    <script src="/js/reabastecerAlmacen.js"></script>
+</main>
+</body>
+</html>
