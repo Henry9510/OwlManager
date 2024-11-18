@@ -1,21 +1,17 @@
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
     let botonCrear = document.getElementById("btnCrearEmpleado");
 
     if (botonCrear) {
-        crearNuevoEmpleado(botonCrear);
+        configurarBotonCrearEmpleado(botonCrear);
     } else {
-        console.error('El botón con ID no se encuentra en el DOM.');
+        console.error('El botón con ID "btnCrearEmpleado" no se encuentra en el DOM.');
     }
 });
 
-function crearNuevoEmpleado(botonCrear) {
+// Configura el evento para crear un nuevo empleado
+function configurarBotonCrearEmpleado(botonCrear) {
     botonCrear.addEventListener("click", async evento => {
-        // Llama a la función para registrar un proyecto si es válido
+        // Llama a la función para registrar un empleado si el formulario es válido
         if (validarFormulario()) {
             await registrarEmpleado();
         } else {
@@ -23,13 +19,13 @@ function crearNuevoEmpleado(botonCrear) {
         }
     });
 }
-const validarFormulario = () => {
-    const datos = [
+
+// Función de validación del formulario
+function validarFormulario() {
+    const camposObligatorios = [
         'cedula',
         'nombre',
-        'segundo_nombre',
         'apellido',
-        'segundo_apellido',
         'fecha_ingreso',
         'edad',
         'cargo',
@@ -41,13 +37,12 @@ const validarFormulario = () => {
 
     let esValido = true;
 
-    datos.forEach(dato => {
-        let campo = document.getElementById(dato);
+    camposObligatorios.forEach(campoId => {
+        let campo = document.getElementById(campoId);
 
-        // Verificar si el campo existe
         if (campo) {
             let valor = campo.value.trim();
-            let mensajeError = document.getElementById(`${dato}_error`);
+            let mensajeError = document.getElementById(`${campoId}_error`);
 
             if (!valor) {
                 esValido = false;
@@ -55,9 +50,9 @@ const validarFormulario = () => {
                 if (!mensajeError) {
                     // Crear el mensaje de error si no existe
                     mensajeError = document.createElement('div');
-                    mensajeError.id = `${dato}_error`;
+                    mensajeError.id = `${campoId}_error`;
                     mensajeError.style.color = 'red';
-                    mensajeError.innerText = `El campo ${dato} es obligatorio.`;
+                    mensajeError.innerText = `El campo ${campoId} es obligatorio.`;
                     campo.parentNode.insertBefore(mensajeError, campo.nextSibling); // Mostrar mensaje de error
                 }
             } else {
@@ -67,22 +62,17 @@ const validarFormulario = () => {
                 }
             }
         } else {
-            console.error(`El campo con ID "${dato}" no existe en el formulario.`);
+            console.error(`El campo con ID "${campoId}" no existe en el formulario.`);
         }
     });
 
     return esValido;
-};
+}
 
-
-
-
-
-
-// Declaración de la función antes de su uso
-let registrarEmpleado = async () => {
+// Función para registrar un nuevo empleado en el backend
+async function registrarEmpleado() {
     // Recolecta los datos del formulario
-    let campos = {
+    let datosEmpleado = {
         cedula: parseInt(document.getElementById('cedula').value.trim(), 10), // Convertir a número
         nombre: document.getElementById('nombre').value.trim(),
         segundo_nombre: document.getElementById('segundo_nombre').value.trim(),
@@ -104,7 +94,7 @@ let registrarEmpleado = async () => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(campos)
+            body: JSON.stringify(datosEmpleado)
         });
 
         if (!respuesta.ok) {
@@ -122,4 +112,3 @@ let registrarEmpleado = async () => {
         alert('Ocurrió un error al registrar el empleado. Por favor, inténtelo de nuevo.');
     }
 }
-

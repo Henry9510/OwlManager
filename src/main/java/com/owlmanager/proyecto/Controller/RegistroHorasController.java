@@ -65,8 +65,8 @@ public class RegistroHorasController {
         RegistroHoras registroExistente = registroHorasRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Registro de horas no encontrado"));
 
-        // Actualizar campos del registro
-        registroHorasActualizado.setFecha(registroExistente.getFecha());
+        // Actualizar los campos que vienen en el request
+        registroExistente.setFecha(registroHorasActualizado.getFecha());
         registroExistente.setHoras_trabajadas(registroHorasActualizado.getHoras_trabajadas());
 
         // Validar y asignar el empleado

@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="/css/form.css" rel="stylesheet">
+    <link href="/css/tablas-form.css" rel="stylesheet">
     <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/form.css" rel="stylesheet">
     <title>Owl Manager Dashboard</title>
 </head>
 <body>
@@ -26,7 +27,7 @@
                     <li><a href="/templates/nuevo-empleado" aria-label="Agregar nuevo empleado">Nuevo</a></li>
                     <li><a href="/templates/lista-empleado" aria-label="Lista de empleados">Listado</a></li>
                     <li><a href="/templates/registro-horas" aria-label="Registro de horas">Registro de Tiempo</a></li>
-                    <li><a href="/templates/lista-registro-horas" aria-label="Lista registro de horas"> Lista registro de Tiempo</a></li>
+                    <li><a href="/templates/lista-registro-horas" aria-label="Lista Registro de horas">Lista Registro de Tiempo</a></li>
                 </ul>
             </li>
             <li>
@@ -37,6 +38,8 @@
                     <li><a href="/templates/lista-insumo" aria-label="Ver productos">Lista de Productos</a></li>
                     <li><a href="/templates/almacen" aria-label="Almacenar">Ubicar en Almacén</a></li>
                     <li><a href="/templates/lista-almacenaje" aria-label="lista almacen">Alamcen</a></li>
+                    <li><a href="/templates/recibirDevoluciones" aria-label="Recibir devoluciones">Recibir Devoluciones</a></li>
+                    <li><a href="/templates/reabastecerAlmacen" aria-label="Reabastecer">Reabastecimiento</a></li>
 
                 </ul>
             </li>
@@ -69,37 +72,106 @@
         </ul>
     </nav>
 </header>
+<main>
+    <section class="tables">
+        <h2>Listado de Registro de Horas Trabajadas</h2>
 
+        <div class="busqueda">
+            <input type="text" id="busqueda" placeholder="Buscar por fecha, proyecto, cédula o empleado..." oninput="filtrarHoras()">
+            <label for="filasPorPagina">Filas por página:</label>
+            <select id="filasPorPagina" onchange="actualizarFilasPorPagina()">
+                <option value="10">10</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
 
-<section>
-    <div class="tranferenciaProyecto">
-        <h3>Listado de Transferencias</h3>
-        <form id="materialForm">
-            <label for="buscar">Buscar:</label>
-            <input type="text" id="buscar" name="busar"><br><br>
-        </form>
-
-        <h3>Listado de Transferencias</h3>
-        <table id="Horaslist">
+        <table id="tablaHoras" class="tablaModelo">
             <thead>
             <tr>
-                <th>Fecha</th>
-                <th>Proyecto</th>
-                <th>Cedula</th>
-                <th>Empleado</th>
-                <th>Horas trabajadas</th>
-                <th>Usuario</th>
-                <th>Acciones</th>
+                <th class="cabecera">ID</th>
+                <th class="cabecera">Fecha</th>
+                <th class="cabecera">Proyecto</th>
+                <th class="cabecera">Cédula</th>
+                <th class="cabecera">Empleado</th>
+                <th class="cabecera">Horas Trabajadas</th>
+                <th class="cabecera">Usuario</th>
+                <th colspan="2">Opciones</th>
             </tr>
             </thead>
             <tbody>
+            <!-- Aquí se generarán las filas de horas trabajadas con JavaScript -->
             </tbody>
         </table>
-    </div>
-</section>
-</body>
+
+        <div class="paginacion">
+            <button id="btnAnterior" onclick="cambiarPagina(-1)">Anterior</button>
+            <span id="numeroPagina">1</span>
+            <button id="btnSiguiente" onclick="cambiarPagina(1)">Siguiente</button>
+        </div>
+    </section>
+
+    <section>
+        <form id="formregistrohoras" class="formulario"  style="display: none;"  >
+            <h2>Registro de Horas</h2>
+            <div class="info">
+                <div class="form-group">
+                    <label for="idRegistroHoras">Fecha:</label>
+                    <input type="number" id="idRegistroHoras" name="idRegistroHoras" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="cedula">Cédula:</label>
+                    <input type="text" id="cedula" name="cedula" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Primer Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="segundo_nombre">Segundo Nombre:</label>
+                    <input type="text" id="segundo_nombre" name="segundo_nombre" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="apellido">Primer Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="segundo_apellido">Segundo Apellido:</label>
+                    <input type="text" id="segundo_apellido" name="segundo_apellido" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="proyecto">Proyecto:</label>
+                    <input type="number" id="proyecto" name="proyecto" min="0" >
+                </div>
+
+                <div class="form-group">
+                    <label for="horas">Horas Trabajadas:</label>
+                    <input type="number" id="horas" name="horas" min="0" >
+                </div>
+
+                <div class="btnModificar">
+                    <button id="btnEditar" type="submit">Guardar</button>
+                    <button id="btnCancelar">Cancelar</button>
+                </div>
+
+            </div>
+        </form>
+    </section>
+</main>
+
 
 <script src="/js/listarHoras.js"></script>
 
+</body>
 </html>
 

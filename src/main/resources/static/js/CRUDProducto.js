@@ -4,6 +4,7 @@ window.onload = function () {
     ocultarFormulario();
     cargarUnidades(); // Cargar unidades en el select
     cargarCategorias(); // Cargar categorías en el select
+    document.getElementById('busquedaInsumos').addEventListener('input', buscarInsumos);
 }
 
 // Función para cargar unidades en el select
@@ -33,6 +34,40 @@ let cargarUnidades = async () => {
         console.error('Error al cargar unidades:', error);
     }
 }
+
+
+function buscarInsumos() {
+    const input = document.getElementById('busquedaInsumos');
+    const busqueda = input.value.trim().toLowerCase();
+    const rows = document.querySelectorAll('#tablaInsumos tbody tr');
+
+    // Si el campo de búsqueda está vacío, mostrar todos los insumos
+    if (busqueda === '') {
+        listarInsumos();
+        return;
+    }
+
+    let encontrado = false;
+
+    rows.forEach((row) => {
+        const cells = row.getElementsByTagName('td');
+        const codigo = cells[0].innerText.toLowerCase(); // Ubicación está en la primera columna
+
+
+        // Comprobar si la búsqueda coincide con la ubicación o el código
+        if (codigo.includes(busqueda)) {
+            row.style.display = ''; // Mostrar fila si hay coincidencia
+            encontrado = true;
+        } else {
+            row.style.display = 'none'; // Ocultar fila si no coincide
+        }
+    });
+
+    if (!encontrado) {
+        alert("No se encontraron coincidencias");
+    }
+}
+
 
 // Función para cargar categorías en el select
 let cargarCategorias = async () => {

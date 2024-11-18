@@ -53,7 +53,7 @@ async function listarTransferencias() {
                 window.location.href = `detalle-transferencia-almacen/${transferencia.id_entrada}`;
             });
 
-            // Lógica para recibir la transferencia
+            // Lógica para recibir la transferencia y actualizar el stock
             recibirBtn.addEventListener('click', async () => {
                 try {
                     const registroTransferencia = {
@@ -80,6 +80,9 @@ async function listarTransferencias() {
 
                     console.log('Transferencia actualizada correctamente');
                     alert('Transferencia marcada como recibida');
+
+                    // Actualizar el stock de los insumos en el almacén
+                    await actualizarStockAlmacen(transferencia.insumos);
 
                     // Remover la fila de la tabla después de la actualización
                     tr.remove();
@@ -108,6 +111,45 @@ async function listarTransferencias() {
     } catch (error) {
         console.error('Error al listar transferencias:', error);
         alert(`Error al cargar transferencias: ${error.message}`);
+    }
+}
+
+// Función para actualizar el stock de los insumos en el almacén
+async function actualizarStockAlmacen(insumos) {
+    try {
+        for (const insumo of insumos) {
+            const stockActual = insumo.estante.stock;
+            const cantidadEntrada = insumo.cantidad_entrada;
+            const codigoInsumo = insumo.estante.codigo_insumo.codigo_insumo;
+            const ubicacion = insumo.estante.ubicacion;
+
+            // Crear el objeto insumo a enviar
+            const insumoActualizado = {
+                ubicacion: ubicacion,
+                codigo_insumo: { codigo_insumo: codigoInsumo },
+                status: insumo.estante.status,
+                stock: stockActual + cantidadEntrada
+            };
+
+            // Realizar la solicitud PUT para actualizar el stock en el almacén
+            const response = await fetch(`http://localhost:8080/api/almacen/${ubicacion}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(insumoActualizado)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error al actualizar el stock del insumo con código ${codigoInsumo}`);
+            }
+
+            console.log(`Stock actualizado para insumo ${codigoInsumo} en ubicación ${ubicacion}`);
+        }
+
+        alert('Stock actualizado exitosamente para todos los insumos.');
+
+    } catch (error) {
+        console.error('Error al actualizar el stock del almacén:', error);
+        alert('Hubo un problema al actualizar el stock de los insumos.');
     }
 }
 

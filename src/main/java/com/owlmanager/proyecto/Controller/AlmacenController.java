@@ -95,4 +95,26 @@ public class AlmacenController {
 
         return ResponseEntity.ok(almacenList); // Retorna 200 y la lista encontrada
     }
+
+    @PutMapping("/insumo/{codigo}")
+    public ResponseEntity<Almacen> actualizarStock(@PathVariable Long codigo, @RequestBody Almacen nuevoAlmacen) {
+        // Verificar si el insumo existe en el almacén
+        List<Almacen> almacenList = almacenRepository.findByCodigo_insumo_Codigo_insumo(codigo);
+
+        if (almacenList.isEmpty()) {
+            return ResponseEntity.notFound().build(); // Retorna 404 si no se encuentra
+        }
+
+        // Suponiendo que solo hay un insumo con ese código, puedes tomar el primero
+        Almacen almacenExistente = almacenList.get(0);
+
+        // Actualizar el stock (o cualquier otro campo que necesites)
+        almacenExistente.setStock(nuevoAlmacen.getStock());
+
+        // Guardar los cambios en la base de datos
+        almacenRepository.save(almacenExistente);
+
+        return ResponseEntity.ok(almacenExistente); // Retorna 200 y el insumo actualizado
+    }
+
 }

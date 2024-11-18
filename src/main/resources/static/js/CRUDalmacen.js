@@ -7,7 +7,9 @@ window.onload = function () {
     ocultarFormulario();
     cargarUnidades();
     cargarCategorias();
+    document.getElementById('busquedaInsumos').addEventListener('input', buscarInsumos);
 }
+
 
 // Función para cargar unidades en el select
 let cargarUnidades = async () => {
@@ -198,6 +200,38 @@ let borrarInsumo = async (ubicacion) => {
     } catch (error) {
         console.error('Error al borrar insumo:', error);
         alert('Ocurrió un error al borrar el insumo. Inténtalo de nuevo.');
+    }
+}
+
+function buscarInsumos() {
+    const input = document.getElementById('busquedaInsumos');
+    const busqueda = input.value.trim().toLowerCase();
+    const rows = document.querySelectorAll('#tablaInsumos tbody tr');
+
+    // Si el campo de búsqueda está vacío, mostrar todos los insumos
+    if (busqueda === '') {
+        listarInsumos();
+        return;
+    }
+
+    let encontrado = false;
+
+    rows.forEach((row) => {
+        const cells = row.getElementsByTagName('td');
+        const ubicacion = cells[0].innerText.toLowerCase(); // Ubicación está en la primera columna
+        const codigo = cells[1].innerText.toLowerCase(); // Código está en la segunda columna
+
+        // Comprobar si la búsqueda coincide con la ubicación o el código
+        if (ubicacion.includes(busqueda) || codigo.includes(busqueda)) {
+            row.style.display = ''; // Mostrar fila si hay coincidencia
+            encontrado = true;
+        } else {
+            row.style.display = 'none'; // Ocultar fila si no coincide
+        }
+    });
+
+    if (!encontrado) {
+        alert("No se encontraron coincidencias");
     }
 }
 

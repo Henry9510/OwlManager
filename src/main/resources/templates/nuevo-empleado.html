@@ -27,13 +27,20 @@
                     <li><a href="/templates/nuevo-empleado" aria-label="Agregar nuevo empleado">Nuevo</a></li>
                     <li><a href="/templates/lista-empleado" aria-label="Lista de empleados">Listado</a></li>
                     <li><a href="/templates/registro-horas" aria-label="Registro de horas">Registro de Tiempo</a></li>
+                    <li><a href="/templates/lista-registro-horas" aria-label="Lista Registro de horas">Lista Registro de Tiempo</a></li>
                 </ul>
             </li>
             <li>
                 <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
                 <ul class="submenu">
-                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear producto</a></li>
-                    <li><a href="/templates/lista-insumo" aria-label="Ver almacén">Almacén</a></li>
+
+                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear Producto</a></li>
+                    <li><a href="/templates/lista-insumo" aria-label="Ver productos">Lista de Productos</a></li>
+                    <li><a href="/templates/almacen" aria-label="Almacenar">Ubicar en Almacén</a></li>
+                    <li><a href="/templates/lista-almacenaje" aria-label="lista almacen">Alamcen</a></li>
+                    <li><a href="/templates/recibirDevoluciones" aria-label="Recibir devoluciones">Recibir Devoluciones</a></li>
+                    <li><a href="/templates/reabastecerAlmacen" aria-label="Reabastecer">Reabastecimiento</a></li>
+
                 </ul>
             </li>
             <li>
@@ -49,7 +56,8 @@
                 <ul class="submenu">
                     <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a almacén</a></li>
                     <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a proyecto</a></li>
-                    <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de Transferencia</a></li>
+                    <li><a href="/templates/lista-transferenciaAlmacen" aria-label="Lista de transferencias">Lista de Transferencia Almaen</a></li>
+                    <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de Transferencia Proyectos</a></li>
                 </ul>
             </li>
             <li>
@@ -92,49 +100,48 @@
             </div>
         </div>
 
-<div class="info">
-    <h3>Contacto</h3>
-    <div class="form-group">
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-    <div class="form-group">
-        <label for="telefono">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono">
-    </div>
-    <div class="form-group">
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion">
-    </div>
-</div>
+        <div class="info">
+            <h3>Contacto</h3>
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono">
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion">
+            </div>
+        </div>
 
-<div class="info">
-    <h3>Detalles</h3>
-    <div class="form-group">
-        <label for="edad">Edad:</label>
-        <input type="number" id="edad" name="edad" min="0" required>
-    </div>
-    <div class="form-group">
-        <label for="sexo">Sexo:</label>
-        <input type="text" id="sexo" name="sexo" required>
-    </div>
-    <div class="form-group">
-        <label for="cargo">Cargo:</label>
-        <input type="text" id="cargo" name="cargo" required>
-    </div>
-    <div class="form-group">
-        <label for="fecha_ingreso">Fecha de Ingreso:</label>
-        <input type="date" id="fecha_ingreso" name="fecha_ingreso" required>
-    </div>
+        <div class="info">
+            <h3>Detalles</h3>
+            <div class="form-group">
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" name="edad" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="sexo">Sexo:</label>
+                <input type="text" id="sexo" name="sexo" required>
+            </div>
+            <div class="form-group">
+                <label for="cargo">Cargo:</label>
+                <input type="text" id="cargo" name="cargo" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha_ingreso">Fecha de Ingreso:</label>
+                <input type="date" id="fecha_ingreso" name="fecha_ingreso" required>
+            </div>
+        </div>
 
-
-</div>
-
+        <div class="btn-nuevo">
+            <button type="submit" id="btnCrearEmpleado">GUARDAR</button>
+        </div>
     </form>
 
-    <div class="btn-nuevo">
-        <button type="submit" id="btnCrearEmpleado">GUARDAR 💾 </button>
-    </div>
+
 
 </main>
     <script src="/js/newEmpleado.js"></script>
