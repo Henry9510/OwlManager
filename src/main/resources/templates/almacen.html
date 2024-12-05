@@ -11,106 +11,120 @@
 </head>
 
 <body>
-<header>
-    <nav class="header">
-        <div class="div-logo">
-            <img src="/img/buho.png" class="logoImg" alt="Logo de Owl Manager" style="width: 50px">
-            <a class="logotexto" href="/templates/index">Owl Manager Dashboard</a>
-        </div>
+    <header>
+        <nav class="header">
+            <div class="div-logo">
+                <img src="/img/buho.png" class="logoImg" alt="Logo de Owl Manager" style="width: 50px">
+                <a class="logotexto" href="/templates/index">Owl Manager Dashboard</a>
+            </div>
 
-        <ul class="nav-list">
-            <li><a href="/templates/index" aria-label="Ir a inicio">Inicio</a></li>
+            <ul class="nav-list">
+                <li><a href="/templates/index" aria-label="Ir a inicio">Inicio</a></li>
 
-            <li>
-                <a aria-label="Gestión Usuarios">Gestión Usuarios</a>
-                <ul class="submenu">
-                    <li><a href="/templates/nuevo-empleado" aria-label="Agregar nuevo empleado">Nuevo</a></li>
-                    <li><a href="/templates/lista-empleado" aria-label="Lista de empleados">Listado</a></li>
-                    <li><a href="/templates/registro-horas" aria-label="Registro de horas">Registro de Tiempo</a></li>
-                    <li><a href="/templates/lista-registro-horas" aria-label="Lista Registro de horas">Lista Registro de Tiempo</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
-                <ul class="submenu">
+                <li>
+                    <a aria-label="Gestión Usuarios">Gestión Usuarios</a>
+                    <ul class="submenu">
+                        <li><a href="/templates/nuevo-empleado" aria-label="Agregar nuevo empleado">Nuevo</a></li>
+                        <li><a href="/templates/lista-empleado" aria-label="Lista de empleados">Listado</a></li>
+                        <li><a href="/templates/registro-horas" aria-label="Registro de horas">Registro de Tiempo</a>
+                        </li>
+                        <li><a href="/templates/lista-registro-horas" aria-label="Lista Registro de horas">Lista
+                                Registro de Tiempo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/templates/nuevo-producto" aria-label="Gestión del Inventario">Gestión del Inventario</a>
+                    <ul class="submenu">
 
-                    <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear Producto</a></li>
-                    <li><a href="/templates/lista-insumo" aria-label="Ver productos">Lista de Productos</a></li>
-                    <li><a href="/templates/almacen" aria-label="Almacenar">Ubicar en Almacén</a></li>
-                    <li><a href="/templates/lista-almacenaje" aria-label="lista almacen">Alamcen</a></li>
-                    <li><a href="/templates/recibirDevoluciones" aria-label="Recibir devoluciones">Recibir Devoluciones</a></li>
-                    <li><a href="/templates/reabastecerAlmacen" aria-label="Reabastecer">Reabastecimiento</a></li>
+                        <li><a href="/templates/nuevo-producto" aria-label="Crear nuevo producto">Crear Producto</a>
+                        </li>
+                        <li><a href="/templates/lista-insumo" aria-label="Ver productos">Lista de Productos</a></li>
+                        <li><a href="/templates/almacen" aria-label="Almacenar">Ubicar en Almacén</a></li>
+                        <li><a href="/templates/lista-almacenaje" aria-label="lista almacen">Alamcen</a></li>
+                        <li><a href="/templates/recibirDevoluciones" aria-label="Recibir devoluciones">Recibir
+                                Devoluciones</a></li>
+                        <li><a href="/templates/reabastecerAlmacen" aria-label="Reabastecer">Reabastecimiento</a></li>
 
-                </ul>
-            </li>
-            <li>
-                <a href="/templates/gestionProyectos" aria-label="Gestión de Proyectos">Gestión de Proyectos</a>
-                <ul class="submenu">
-                    <li><a href="/templates/nuevo-proyecto" aria-label="Agregar nuevo proyecto">Nuevo</a></li>
-                    <li><a href="/templates/recibirPedidos" aria-label="Recibir pedidos">Recibir Pedidos</a></li>
-                    <li><a href="/templates/lista-proyectos" aria-label="Lista de proyectos">Lista Proyecto</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="/templates/transferencias" aria-label="Gestión de Transferencias">Gestión de Transferencias</a>
-                <ul class="submenu">
-                    <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a almacén</a></li>
-                    <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a proyecto</a></li>
-                    <li><a href="/templates/lista-transferenciaAlmacen" aria-label="Lista de transferencias">Lista de Transferencia Almaen</a></li>
-                    <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de Transferencia Proyectos</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="/templates/reportes" aria-label="Reportes">Reportes</a>
-                <ul class="submenu">
-                    <li><a href="#" aria-label="Ver avance en proyecto"><i class="fas fa-project-diagram"></i> Avance en proyecto</a></li>
-                    <li><a href="#" aria-label="Ver inventario de proyecto"><i class="fas fa-box"></i> Inventario de proyecto</a></li>
-                    <li><a href="#" aria-label="Ver insumos faltantes"><i class="fas fa-exclamation-triangle"></i> Insumos Faltantes</a></li>
-                </ul>
-            </li>
-            <li><a href="/templates/login" aria-label="Cerrar sesión">Logout</a></li>
-        </ul>
-    </nav>
-</header>
-
-
-<main>
-
-    <section>
-
-
-        <form id="miFormulario">
-
-            <label>Codigo Insumo:</label>
-            <input type="number" id="insumo" required>
-
-            <button type="button" id="buscarInsumo" title="Buscar Insumo">🔍</button>
-            <br>
-            <br>
-            <span id="mensaje-error" style="color: red;"></span>
-            <br>
-
-            <label>Descripcion:</label>
-            <input type="text" id="description"><br><br>
-
-            <label>Numero de parte:</label>
-            <input type="text" id="numero_parte"><br><br>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/templates/gestionProyectos" aria-label="Gestión de Proyectos">Gestión de Proyectos</a>
+                    <ul class="submenu">
+                        <li><a href="/templates/nuevo-proyecto" aria-label="Agregar nuevo proyecto">Nuevo</a></li>
+                        <li><a href="/templates/recibirPedidos" aria-label="Recibir pedidos">Recibir Pedidos</a></li>
+                        <li><a href="/templates/lista-proyectos" aria-label="Lista de proyectos">Lista Proyecto</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/templates/transferencias" aria-label="Gestión de Transferencias">Gestión de
+                        Transferencias</a>
+                    <ul class="submenu">
+                        <li><a href="/templates/transferir-almacen" aria-label="Transferir a almacén">Transferir a
+                                almacén</a></li>
+                        <li><a href="/templates/transferir-proyecto" aria-label="Transferir a proyecto">Transferir a
+                                proyecto</a></li>
+                        <li><a href="/templates/lista-transferenciaAlmacen" aria-label="Lista de transferencias">Lista
+                                de Transferencia Almaen</a></li>
+                        <li><a href="/templates/lista-transferencia" aria-label="Lista de transferencias">Lista de
+                                Transferencia Proyectos</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/templates/reportes" aria-label="Reportes">Reportes</a>
+                    <ul class="submenu">
+                        <li><a href="#" aria-label="Ver avance en proyecto"><i class="fas fa-project-diagram"></i>
+                                Avance en proyecto</a></li>
+                        <li><a href="#" aria-label="Ver inventario de proyecto"><i class="fas fa-box"></i> Inventario de
+                                proyecto</a></li>
+                        <li><a href="#" aria-label="Ver insumos faltantes"><i class="fas fa-exclamation-triangle"></i>
+                                Insumos Faltantes</a></li>
+                    </ul>
+                </li>
+                <li><a href="/templates/login" aria-label="Cerrar sesión">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
 
 
-            <label>cantidad:</label>
-            <input type="number" id="cantidad-entrada" required><br><br>
+    <main>
+
+        <section>
 
 
-            <label>Ubicación:</label>
-            <input type="number" id="estante" required><br><br>
+            <form id="miFormulario" class="formulario">
+                <h2>Ubicar en Almacen</h2>
+                <div class="info">
+                    <div class="form-group">
+                        <label>Codigo Insumo:</label>
+                        <input type="number" id="insumo" required>
 
-            <button id="btn-nuevo" type="submit">Guardar</button>
-        </form>
+                     
+                        <span id="mensaje-error" style="color: red;"></span>
+                        <br>
 
-    </section>
+                        <label>Descripcion:</label>
+                        <input type="text" id="description"><br><br>
 
-</main>
-<script src="/js/almacenarProducto.js"></script>
+                        <label>Numero de parte:</label>
+                        <input type="text" id="numero_parte"><br><br>
+
+
+                        <label>cantidad:</label>
+                        <input type="number" id="cantidad-entrada" required><br><br>
+
+
+                        <label>Ubicación:</label>
+                        <input type="number" id="estante" required><br><br>
+
+                        <button id="btn-nuevo" type="submit">Guardar</button>
+                    </div>
+                </div>
+            </form>
+
+        </section>
+
+    </main>
+    <script src="/js/almacenarProducto.js"></script>
 </body>
 
 </html>

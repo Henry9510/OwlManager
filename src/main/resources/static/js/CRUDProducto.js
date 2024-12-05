@@ -4,7 +4,7 @@ window.onload = function () {
     ocultarFormulario();
     cargarUnidades(); // Cargar unidades en el select
     cargarCategorias(); // Cargar categorías en el select
-    document.getElementById('busquedaInsumos').addEventListener('input', buscarInsumos);
+    document.getElementById('busqueda').addEventListener('input', buscarInsumos);
 }
 
 // Función para cargar unidades en el select
@@ -37,7 +37,7 @@ let cargarUnidades = async () => {
 
 
 function buscarInsumos() {
-    const input = document.getElementById('busquedaInsumos');
+    const input = document.getElementById('busqueda');
     const busqueda = input.value.trim().toLowerCase();
     const rows = document.querySelectorAll('#tablaInsumos tbody tr');
 

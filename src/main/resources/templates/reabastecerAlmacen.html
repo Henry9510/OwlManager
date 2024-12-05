@@ -14,12 +14,16 @@
 <body>
 <style>
     .formulario-reabastecimiento {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
+        background: white;
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 20px;
     }
 
     .form-group {
@@ -127,11 +131,11 @@
 
 <main>
 
-    <section>
-        <form class="formulario-reabastecimiento" id="formReabastecer">
+    <section class="formulario-reabastecimiento">
+        <form id="formReabastecer">
             <h2>Reabastecimiento de Almacén</h2>
 
-            <div class="form-group">
+            <div class="form-group" style="max-width: 300px;">
                 <label for="fecha">Fecha:</label>
                 <input type="date" id="fecha" required>
             </div>
