@@ -152,12 +152,14 @@ public class mainController {
     }
 
 
-    // Handle requests for favicon.ico
     @GetMapping("/favicon.ico")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void favicon() {
         // This method intentionally left blank to ignore favicon requests
     }
+
+
+
 
     @GetMapping("/templates/recibirPedidos")
     public String recibirPedidos() {
