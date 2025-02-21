@@ -3,6 +3,7 @@ let proyectos = [];
 // Cargar los proyectos y listar los del mes actual al cargar la página
 window.onload = async function () {
     await cargarProyectos();
+    cargarAlmacen();
     listarProyectosDelMes();
     listarProyectosTerminadosDelMes();
     llenarTablaHorasHombre(); // Llenar tabla de horas por proyecto
@@ -30,6 +31,28 @@ async function cargarProyectos() {
         console.error('Error al cargar proyectos:', error);
     }
 }
+
+async function cargarAlmacen() {
+    try {
+        const respuesta = await fetch('http://localhost:8080/api/Almcen', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!respuesta.ok) {
+            throw new Error(`Error al obtener proyectos: ${respuesta.status} ${respuesta.statusText}`);
+        }
+
+        almacen = await respuesta.json(); // Guardamos todos los proyectos
+        console.log(almacen); // Verifica que los proyectos se estén cargando correctamente
+    } catch (error) {
+        console.error('Error al cargar almacen:', error);
+    }
+}
+
 
 // Función para listar proyectos del mes actual
 function listarProyectosDelMes() {
@@ -77,7 +100,7 @@ function listarProyectosTerminadosDelMes() {
         return (
             fechaFin.getMonth() === mesActual &&
             fechaFin.getFullYear() === añoActual &&
-            proyecto.estado_proyecto.nombre_estado === 'FINALIZADO' // Asegúrate de que el nombre del estado sea correcto
+            proyecto.estado_proyecto.nombre_estado === 'Finalizado' // Asegúrate de que el nombre del estado sea correcto
         );
     });
 
@@ -119,36 +142,49 @@ function llenarTablaHorasHombre() {
     });
 }
 
-// Función para dibujar el gráfico de horas
 function dibujarGraficoHoras() {
     const ctx = document.getElementById('graficoHoras').getContext('2d');
 
-    const labels = proyectos.map(proyecto => proyecto.codigo_proyecto); // Obtener los códigos de los proyectos
-    const horasEstimadas = proyectos.map(proyecto => proyecto.horas_estimadas); // Obtener las horas estimadas
-    const horasReales = proyectos.map(proyecto => proyecto.horas_reales); // Obtener las horas reales
+    const fechaActual = new Date();
+    const mesActual = fechaActual.getMonth(); // 0-11
+    const añoActual = fechaActual.getFullYear();
+
+    // Filtrar solo los proyectos del mes actual
+    const proyectosDelMes = proyectos.filter(proyecto => {
+        const fechaInicio = new Date(proyecto.fecha_inicio);
+        return fechaInicio.getMonth() === mesActual && fechaInicio.getFullYear() === añoActual;
+    });
+
+    const labels = proyectosDelMes.map(proyecto => proyecto.codigo_proyecto);
+    const horasEstimadas = proyectosDelMes.map(proyecto => proyecto.horas_estimadas);
+    const horasReales = proyectosDelMes.map(proyecto => proyecto.horas_reales);
+
+    // Verifica que los datos filtrados sean correctos
+    console.log("Proyectos del mes actual:", proyectosDelMes);
 
     // Crear el gráfico de barras
     new Chart(ctx, {
-        type: 'bar', // Tipo de gráfico
+        type: 'bar',
         data: {
-            labels: labels, // Etiquetas para cada barra
+            labels: labels,
             datasets: [
                 {
                     label: 'Horas Estimadas',
-                    data: horasEstimadas, // Datos de horas estimadas
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Color de las barras
+                    data: horasEstimadas,
+                    backgroundColor: '#043873',
                 },
                 {
                     label: 'Horas Reales',
-                    data: horasReales, // Datos de horas reales
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)', // Color de las barras
+                    data: horasReales,
+                    backgroundColor: 'rgb(255,0,59)',
                 }
             ]
         },
         options: {
+            responsive: true,
             scales: {
                 y: {
-                    beginAtZero: true // Comenzar el eje y en cero
+                    beginAtZero: true
                 }
             }
         }

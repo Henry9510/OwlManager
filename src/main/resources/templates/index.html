@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="/css/index.css" rel="stylesheet">
@@ -80,148 +82,161 @@
     </nav>
 </header>
 
-
-<main class="main-index">
-    <!-- Barra de tareas (bienvenida) -->
+<main class="mainer">
     <section class="taskbar">
-        <span>Bienvenido</span>
+        <h1>Welcome</h1>
         <div class="taskbar-actions">
-            <button>Acción 1</button>
-            <button>Acción 2</button>
-        </div>
-    </section>
-
-    <section class="cont-main">
-        <section class="cards">
-            <div class="card" style="background: #A3C1DA">
-                <i class="fas fa-calendar"></i>
-                <div class="info">
-                    <h3>Tarjeta Proyectos del Mes</h3>
-                    <span class="number" id="totalProyectoMes">0</span>
-                </div>
-            </div>
-            <div class="card" style="background: #bdecb6">
-                <i class="fas fa-calendar-check"></i>
-                <div class="info">
-                    <h3>Tarjeta proyecto terminado mes</h3>
-                    <span class="number">45</span>
-                </div>
-            </div>
-            <div class="card" style="background: #F9E5A8">
-                <i class="fas fa-list-alt"></i>
-                <div class="info">
-                    <h3>Tarjeta total de solicitudes</h3>
-                    <span class="number">78</span>
-                </div>
-            </div>
-            <div class="card" style="background: #F4C2C2">
-                <i class="fas fa-exclamation-triangle"></i>
-                <div class="info">
-                    <h3>Tarjeta total de faltantes</h3>
-                    <span class="number">12</span>
-                </div>
-            </div>
-        </section>
-        <section class="tables">
-            <div class="tablas-mes">
-                <div class="table-container-1">
-                    <h2>Proyectos del Mes</h2>
-                    <table id="tablaProyectoMes">
-                        <thead>
-                        <tr>
-                            <th>Fecha inicio</th>
-                            <th>Número de Proyecto</th>
-                            <th>Descripción</th>
-                            <th>Horas Estimadas</th>
-                            <th>Horas Reales</th>
-                            <th>Fecha Fin</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+            <div class="notification">
+                <span class="badge">3</span>
+                <i class="fas fa-bell"></i>
+                <div class="notification-menu">
+                    <a href="#">Notficación 1</a>
+                    <a href="#">Notficación 2</a>
                 </div>
 
-                <div class="table-container-2">
-                    <h2>Proyectos Terminados del Mes</h2>
-                    <table id="tablaProyectoMesTerminados">
-                        <thead>
-                        <tr>
-                            <th>Código Proyecto</th>
-                            <th>Descripción</th>
-                            <th>Fecha Inicio</th>
-                            <th>Fecha Fin</th>
-                            <th>Horas Estimadas</th>
-                            <th>Horas Reales</th>
-                            <th>Estado</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div> <!-- Asegúrate de cerrar el div aquí -->
-        </section>
-
-        <div class="tablas-indicadores">
-            <div class="table-container-3">
-                <h2>Horas por Proyecto</h2>
-                <table id="tablaHorasHombre" style="visibility: hidden">
-                    <thead>
-                    <tr>
-                        <th>Número de Proyecto</th>
-                        <th>Descripción</th>
-                        <th>Horas Estimadas</th>
-                        <th>Horas Reales</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-                <canvas id="graficoHoras" width="400" height="200"></canvas>
             </div>
 
-            <div class="table-container-4">
-                <h2>Consumo y Faltantes por Proyecto</h2>
-                <table id="consumoFaltantes">
-                    <thead>
-                    <tr>
-                        <th>Numero proyecto</th>
-                        <th>faltantes</th>
-                        <th>totales</th>
+            <!-- Menú de configuración -->
+            <div class="settings">
+                <i class="fas fa-cog"></i>
+                <div class="settings-menu">
+                    <a href="#">Idioma</a>
+                    <a href="#">Tema</a>
+                </div>
+            </div>
 
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
+            <div class="user-avatar">
+                <img src="/img/avatar2.png" alt="Usuario">
+                <div class="user-menu">
+                    <a href="#">Cerrar sesión</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="carga">
-        <button type="submit" id="cargaMasiva">CARGA MASIVA</button>
-    </div>
+    <section class="main-index">
+        <div class="contenedor">
+            <!-- Sección Principal -->
+            <section class="cont-main">
+                <section class="cards">
+                    <div class="card" style="background: #A3C1DA">
+
+                        <div class="info">
+                            <h3>Proyectos para el mes</h3>
+                            <span class="number" id="totalProyectoMes">0</span>
+                        </div>
+                    </div>
+                    <div class="card" style="background: #bdecb6">
+
+                        <div class="info">
+                            <h3>Proyecto terminado del mes</h3>
+                            <span class="number">45</span>
+                        </div>
+                    </div>
+                    <div class="card" style="background: #F9E5A8">
+
+                        <div class="info">
+                            <h3>Total de solicitudes</h3>
+                            <span class="number">78</span>
+                        </div>
+                    </div>
+                    <div class="card" style="background: #F4C2C2">
+
+                        <div class="info">
+                            <h3>Total de faltantes</h3>
+                            <span class="number">12</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tables">
+                    <div class="tablas-mes">
+                        <div class="table-container-1">
+                            <h2>Proyectos del Mes</h2>
+                            <table id="tablaProyectoMes">
+                                <thead>
+                                <tr>
+                                    <th>Fecha Inicio</th>
+                                    <th>Número de Proyecto</th>
+                                    <th>Descripción</th>
+                                    <th>Horas Estimadas</th>
+                                    <th>Horas Reales</th>
+                                    <th>Fecha Fin</th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-container-2">
+                            <h2>Proyectos Terminados del Mes</h2>
+                            <table id="tablaProyectoMesTerminados">
+                                <thead>
+                                <tr>
+                                    <th>Código Proyecto</th>
+                                    <th>Descripción</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Fecha Fin</th>
+                                    <th>Horas Estimadas</th>
+                                    <th>Horas Reales</th>
+                                    <th>Estado</th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="tablas-indicadores">
+                    <div class="table-container-3">
+                        <h2>Horas por Proyecto</h2>
+                            <table id="tablaHorasHombre" style="display: none">
+                            <thead>
+                            <tr>
+                                <th>Número de Proyecto</th>
+                                <th>Descripción</th>
+                                <th>Horas Estimadas</th>
+                                <th>Horas Reales</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <canvas id="graficoHoras" width="400" height="200"></canvas>
+                    </div>
+
+                    <div class="table-container-4">
+                        <h2>Insumos pendiente</h2>
+                        <table id="consumoFaltantes">
+                            <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Descripcion</th>
+                                <th>Numero de Parte</th>
+                                <th>Procedencia</th>
+                                <th>Unidad</th>
+                                <th>Categoria</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="decoracion">
+
+                    <h2>Dolar hoy</h2>
+                    <div class="dollar-price" id="dollar-price">Cargando...</div>
+            </section>
+        </div>
+    </section>
 </main>
 
-<aside>
-    <div class="calendario-api">
-        <div>
 
-        </div>
-    </div>
-    <div>
-        <div class="divisa-api">
 
-        </div>
-    </div>
-
-</aside>
-
-<script src="/js/infoIndex.js" defer></script>
-<script src="/js/cargardatos.js" ></script>
-
+<script src="/js/infoIndex.js"></script>
+<script src="/js/cargardatos.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let toggles = document.querySelectorAll(".toggle");
@@ -234,7 +249,66 @@
             });
         });
     });
+    async function fetchDollarPrice() {
+        try {
+            const response = await fetch("https://api.exchangerate-api.com/v4/latest/USD");
+            const data = await response.json();
+            const price = data.rates.COP; // Precio del dólar en pesos mexicanos
+            document.getElementById("dollar-price").innerText = `USD: $${price.toFixed(2)} COP`;
+        } catch (error) {
+            document.getElementById("dollar-price").innerText = "Error al cargar";
+            console.error("Error obteniendo el precio del dólar:", error);
+        }
+    }
+
+    // Llamar la función al cargar la página
+    fetchDollarPrice();
+
+    // Actualizar cada 30 segundos
+    setInterval(fetchDollarPrice, 30000);
+
+
+    // Mostrar/ocultar menú de configuración
+    document.querySelector(".settings").addEventListener("click", function() {
+        document.querySelector(".settings-menu").classList.toggle("show");
+    });
+
+    // Cerrar menú al hacer clic fuera
+    window.addEventListener("click", function(event) {
+        if (!event.target.closest(".settings")) {
+            document.querySelector(".settings-menu").classList.remove("show");
+        }
+    });
+
+
+    // Mostrar/ocultar menú de configuración
+    document.querySelector(".notification").addEventListener("click", function() {
+        document.querySelector(".notification-menu").classList.toggle("show");
+    });
+
+    // Cerrar menú al hacer clic fuera
+    window.addEventListener("click", function(event) {
+        if (!event.target.closest(".notification")) {
+            document.querySelector(".notification-menu").classList.remove("show");
+        }
+    });
+
+
+
+    // Mostrar/ocultar menú de configuración
+    document.querySelector(".user-avatar").addEventListener("click", function() {
+        document.querySelector(".user-menu").classList.toggle("show");
+    });
+
+    // Cerrar menú al hacer clic fuera
+    window.addEventListener("click", function(event) {
+        if (!event.target.closest(".user-avatar")) {
+            document.querySelector(".user-menu").classList.remove("show");
+        }
+    });
+
 </script>
+
 </body>
 
 </html>

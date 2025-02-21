@@ -76,7 +76,11 @@ let registrarProyecto = async () => {
         descripcion_proyecto: document.getElementById('descripcion_proyecto').value.trim(),
         fecha_inicio: document.getElementById('fecha_inicio').value,
         fecha_fin: document.getElementById('fecha_fin').value,
-        horas_estimadas: document.getElementById('horas_estimadas').value.trim()
+        horas_estimadas: document.getElementById('horas_estimadas').value.trim(),
+        estado_proyecto: {
+            id_estado: 1,
+            nombre_estado: "En Progreso"
+        }
     };
 
     try {

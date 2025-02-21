@@ -1,36 +1,51 @@
 
+:root {
+    --color-principal: #043873;
+    --color-secundario: #4F9CF9;
+    --color-box: #FFE492;
+    --color-contenedores: #A7CEFC;
+    --hover-color: #FFFFFF;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+
+
 .tables {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    font-size: 0.8rem;
 }
 
 .table-container-1,
 .table-container-2,
 .table-container-3,
 .table-container-4 {
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 2px 10px var(--shadow-color);
+
+    padding: 10px;
 }
 
 table {
-    width: 100%;
+    width:100%;
     border-collapse: collapse;
     margin-top: 10px;
 }
 
-table th,
-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+
+table th{
+    border: none;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    background: var( --color-principal);
+
 }
 
-table th {
-    background-color: var(--color-contenedores);
-    color: var(--color-secundario);
+table td {
+    border: none;
+    padding: 3px;
     text-align: center;
+    color: black;
 }
 
 .fila-resaltada {
@@ -39,9 +54,8 @@ table th {
 }
 
 #graficoHoras {
-    display: block;
-    width: 80% !important; /* Asegura que el canvas ocupe todo el ancho disponible */
-    height: auto !important; /* Ajusta la altura automáticamente */
-    max-height: 300px; /* Establece una altura máxima compacta */
-    margin: 20px 0; /* Margen para separarlo de otros elementos */
+    width: 80% !important;
+    max-width: 600px; /* Evita que se expanda demasiado */
+    height: 400px !important; /* Altura suficiente para evitar espacios vacíos */
+    margin: auto; /* Centrar el gráfico */
 }

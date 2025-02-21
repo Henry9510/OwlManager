@@ -45,8 +45,6 @@ public class ProyectoController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    // Obtener proyectos por estado
-
 
 
 
