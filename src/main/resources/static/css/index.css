@@ -1,4 +1,4 @@
-/* Variables */
+/* ==================== VARIABLES ==================== */
 :root {
     --color-principal: #043873;
     --color-secundario: #4F9CF9;
@@ -8,36 +8,34 @@
     --shadow-color: rgba(0, 0, 0, 0.2);
 }
 
-/* Reset General */
+/* ==================== RESET GENERAL ==================== */
 * {
-
-    box-sizing: border-box;
-    list-style: none;
-    text-decoration: none;
     margin: 0;
     padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    font-family: "Noto Sans", serif;
+}
 
 h1, h2, h3 {
-    font-family: "Noto Sans", serif;
     font-style: normal;
-
 }
 
-/* Diseño General */
+/* ==================== LAYOUT PRINCIPAL ==================== */
 body {
     display: flex;
-    font-family: "Noto Sans", serif;
-    font-style: normal;
-
+    flex-direction: row;
+    min-height: 100vh;
 }
 
-
-
-/* Sidebar */
+/* ==================== SIDEBAR ==================== */
 .header {
-    width: 15%;
+    width: 20%;
     height: 100vh;
     background-color: var(--color-principal);
     color: white;
@@ -59,11 +57,8 @@ body {
 }
 
 .logotexto {
-    font-size: 1rem ;
+    font-size: 1rem;
     margin-left: 10px;
-}
-
-a.logotexto {
     color: var(--color-box);
 }
 
@@ -119,10 +114,12 @@ a.logotexto {
     font-size: 12px;
     padding: 8px;
 }
-.toggle{
+
+/* Flechas de los submenús */
+.toggle {
     font-size: 14px;
 }
-/* Flechas de los submenús */
+
 .toggle::after {
     content: " ▼";
     float: right;
@@ -132,24 +129,73 @@ a.logotexto {
     content: " ▲";
 }
 
-/* Contenido Principal */
-.main-index {
-    flex: 1;
+/* ==================== CONTENIDO PRINCIPAL ==================== */
+
+
+.contenedor-principal{
     display: flex;
     flex-direction: column;
 }
 
+.cont-main{
+    width: auto;
 
-/* Barra de herramientas */
+}
+
+/* Contenedor Principal */
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    width: 1300px;
+    padding:50px;
+    margin: 0 auto;
+
+}
+
+/* Tarjetas */
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    flex: 1;
+    padding: 10px;
+    background: var(--color-box);
+    border-radius: 5px;
+    text-align: center;
+    transition: transform 0.3s;
+    font-size: 0.6rem;
+}
+
+.card:hover {
+    transform: scale(1);
+}
+
+.card .number {
+    font-size: 1rem;
+    color: black;
+}
+
+.decoracion {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* ==================== BARRA DE HERRAMIENTAS ==================== */
 .taskbar {
-
     background-color: var(--color-principal);
     display: flex;
-    color: white;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
+    color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    flex-shrink: 0; /* Evita que se reduzca */
 }
 
 /* Acciones en la taskbar */
@@ -159,8 +205,7 @@ a.logotexto {
     gap: 20px;
 }
 
-
-
+/* Notificaciones */
 .notification {
     position: relative;
     cursor: pointer;
@@ -177,8 +222,6 @@ a.logotexto {
     padding: 3px 7px;
     border-radius: 50%;
 }
-
-
 
 .notification-menu {
     display: none;
@@ -208,12 +251,7 @@ a.logotexto {
     display: block;
 }
 
-
-
-
-
-
-
+/* Configuración */
 .settings {
     position: relative;
     font-size: 18px;
@@ -248,7 +286,7 @@ a.logotexto {
     display: block;
 }
 
-/* Imagen de usuario */
+/* ==================== PERFIL DE USUARIO ==================== */
 .user-avatar img {
     width: 40px;
     height: 40px;
@@ -256,12 +294,11 @@ a.logotexto {
     cursor: pointer;
 }
 
-
 .user-menu {
     display: none;
     position: absolute;
     right: 25px;
-    top:60px;
+    top: 60px;
     background: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -269,7 +306,7 @@ a.logotexto {
     min-width: 150px;
 }
 
-.user-menu  a {
+.user-menu a {
     display: block;
     padding: 10px;
     color: #333;
@@ -277,7 +314,7 @@ a.logotexto {
     transition: 0.3s;
 }
 
-.user-menu  a:hover {
+.user-menu a:hover {
     background: #f1f1f1;
 }
 
@@ -285,61 +322,3 @@ a.logotexto {
     display: block;
 }
 
-
-
-
-/* Contenedor Principal */
-.contenedor {
-    display: flex;
-    gap: 20px;
-    padding: 50px;
-    width: 100%;
-    max-width: 1200px; /* Evita que el contenido se expanda más de lo necesario */
-    margin: 0 auto;
-}
-
-/* Sección Principal */
-.cont-main {
-    flex: 10;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* Tarjetas */
-.cards {
-    display: flex;
-    gap: 20px;
-
-}
-
-.card {
-    flex: 1;
-    padding: 10px;
-    background: var(--color-box);
-    border-radius: 5px;
-    text-align: center;
-    align-items: center;
-    align-content: center;
-    transition: transform 0.3s;
-    font-size: 0.6rem;
-
-}
-
-.card:hover {
-    transform: scale(1);
-}
-
-/* Texto dentro de las tarjetas */
-.card .number {
-        font-size: 1rem;
-    color: black;
-}
-
-/* Sección de Información */
-.decoracion {
-    flex: 1;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-}

@@ -83,7 +83,7 @@ async function registrarEmpleado() {
         sexo: document.getElementById('sexo').value.trim(),
         direccion: document.getElementById('direccion').value.trim(),
         email: document.getElementById('email').value.trim(),
-        telefono: document.getElementById('telefono').value.trim(),
+        celular: document.getElementById('telefono').value.trim(),
         cargo: document.getElementById('cargo').value.trim()
     };
 

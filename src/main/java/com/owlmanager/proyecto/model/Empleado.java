@@ -25,7 +25,6 @@ public class Empleado {
     private String cargo;
     private int edad;
     private String sexo;
-    private String telefono;
     private String direccion;
     private String email;
     private String celular;
@@ -41,7 +40,6 @@ public class Empleado {
                 ", cargo='" + cargo + '\'' +
                 ", edad=" + edad +
                 ", sexo='" + sexo + '\'' +
-                ", telefono='" + telefono + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", email='" + email + '\'' +
                 ", celular='" + celular + '\'' +

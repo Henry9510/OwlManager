@@ -1,14 +1,17 @@
 /* Estilos generales para el formulario */
 .formulario {
-    max-width: 600px;
-    margin: 0 auto;
     padding: 20px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    margin: 50px;
+    width: 1200px;
+
+}
+
+.formulario-campos{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    font-size: 0.8rem;
 }
 
 /* Estilo para las secciones de información */
@@ -45,7 +48,6 @@
     box-sizing: border-box;
 }
 
-/* Efectos en los inputs */
 .form-group input:focus {
     border-color: #007BFF;
     outline: none;
@@ -65,16 +67,4 @@ button {
 
 button:hover {
     background-color: #0056b3;
-}
-
-/* Estilo para el contenedor del formulario en pantallas pequeñas */
-@media (max-width: 600px) {
-    .formulario {
-        padding: 15px;
-    }
-
-    .form-group label,
-    .form-group input {
-        font-size: 0.9em;
-    }
 }

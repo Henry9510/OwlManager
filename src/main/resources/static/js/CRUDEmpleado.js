@@ -46,7 +46,7 @@ const mostrarEmpleados = () => {
             <td>${empleado.edad}</td>
             <td>${empleado.fecha_ingreso}</td>
             <td>${empleado.sexo}</td>
-            <td>${empleado.telefono}</td>
+            <td>${empleado.celular}</td>
             <td>${empleado.direccion}</td>
             <td>${empleado.email}</td>
             <td><button onclick="editarEmpleado(${empleado.cedula})" class="btn-editar">Editar</button></td>
@@ -153,7 +153,7 @@ let editarEmpleado = async (cedula) => {
         document.getElementById('cargo').value = empleado.cargo;
         document.getElementById('direccion').value = empleado.direccion;
         document.getElementById('email').value = empleado.email;
-        document.getElementById('telefono').value = empleado.telefono;
+        document.getElementById('telefono').value = empleado.celular;
     } catch (error) {
         console.error('Error al cargar los datos del empleado:', error);
     }
@@ -192,7 +192,7 @@ let actualizarEmpleado = async (idEditar) => {
         sexo: document.getElementById('sexo').value.trim(),
         direccion: document.getElementById('direccion').value.trim(),
         email: document.getElementById('email').value.trim(),
-        telefono: document.getElementById('telefono').value.trim(),
+        celular: document.getElementById('telefono').value.trim(),
         cargo: document.getElementById('cargo').value.trim()
     };
 

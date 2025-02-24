@@ -68,7 +68,6 @@ public class EmpleadoController {
         existingEmpleado.setSegundo_apellido(empleadoActualizado.getSegundo_apellido());
         existingEmpleado.setEdad(empleadoActualizado.getEdad());
         existingEmpleado.setSexo(empleadoActualizado.getSexo());
-        existingEmpleado.setTelefono(empleadoActualizado.getTelefono());
         existingEmpleado.setDireccion(empleadoActualizado.getDireccion());
         existingEmpleado.setEmail(empleadoActualizado.getEmail());
         existingEmpleado.setCelular(empleadoActualizado.getCelular());
